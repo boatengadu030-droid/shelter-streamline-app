@@ -1,26 +1,244 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useMemo, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { PageHeader } from "@/components/page-header";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Calendar, Plus, TrendingUp, Users, Package, AlertTriangle, HeartHandshake } from "lucide-react";
+import home from "@/assets/havenlight-home.jpg";
+import { Link } from "@tanstack/react-router";
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts";
+import { format } from "date-fns";
 
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+export const Route = createFileRoute("/")({ component: Dashboard });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Dashboard() {
+  const [stats, setStats] = useState({
+    children: 0, sponsors: 0, lowStock: 0, expiring: 0,
+    overdueCompliance: 0, upcomingEvents: 0,
+    monthDonations: 0, totalDonations: 0,
+  });
+  const [trend, setTrend] = useState<{ day: string; amount: number }[]>([]);
+  const [recentDonations, setRecentDonations] = useState<any[]>([]);
+  const [alerts, setAlerts] = useState<any[]>([]);
+  const [upcoming, setUpcoming] = useState<any[]>([]);
+
+  async function load() {
+    const today = new Date();
+    const startMonth = new Date(today.getFullYear(), today.getMonth(), 1).toISOString();
+    const in14 = new Date(Date.now() + 14 * 86400000).toISOString().slice(0, 10);
+
+    const [
+      ch, sp, inv, comp, ev, donAll, donMonth, donRecent,
+    ] = await Promise.all([
+      supabase.from("children").select("id", { count: "exact", head: true }),
+      supabase.from("sponsors").select("id", { count: "exact", head: true }),
+      supabase.from("inventory_items").select("id, name, quantity, low_stock_threshold, expiry_date"),
+      supabase.from("compliance_records").select("id, title, due_date, status").in("status", ["overdue", "pending"]),
+      supabase.from("events").select("id, title, start_at, location").gte("start_at", new Date().toISOString()).order("start_at").limit(5),
+      supabase.from("donations").select("amount"),
+      supabase.from("donations").select("amount, donation_date").gte("donation_date", startMonth.slice(0, 10)),
+      supabase.from("donations").select("id, amount, currency, donation_date, sponsors(name)").order("created_at", { ascending: false }).limit(5),
+    ]);
+
+    const lowStock = (inv.data ?? []).filter((i) => Number(i.quantity) <= Number(i.low_stock_threshold)).length;
+    const expiring = (inv.data ?? []).filter((i) => i.expiry_date && i.expiry_date <= in14).length;
+    const totalDonations = (donAll.data ?? []).reduce((s, d) => s + Number(d.amount || 0), 0);
+    const monthDonations = (donMonth.data ?? []).reduce((s, d) => s + Number(d.amount || 0), 0);
+
+    // Build 30-day trend
+    const days: Record<string, number> = {};
+    for (let i = 29; i >= 0; i--) {
+      const d = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+      days[d] = 0;
+    }
+    (donMonth.data ?? []).forEach((d) => {
+      const k = String(d.donation_date);
+      if (k in days) days[k] += Number(d.amount || 0);
+    });
+    setTrend(Object.entries(days).map(([day, amount]) => ({ day: format(new Date(day), "MMM d"), amount })));
+
+    setStats({
+      children: ch.count ?? 0,
+      sponsors: sp.count ?? 0,
+      lowStock,
+      expiring,
+      overdueCompliance: (comp.data ?? []).filter((c) => c.status === "overdue").length,
+      upcomingEvents: (ev.data ?? []).length,
+      monthDonations,
+      totalDonations,
+    });
+    setRecentDonations(donRecent.data ?? []);
+    setUpcoming(ev.data ?? []);
+
+    const a: any[] = [];
+    (inv.data ?? []).filter((i) => Number(i.quantity) <= Number(i.low_stock_threshold)).slice(0, 3).forEach((i) =>
+      a.push({ kind: "inventory", text: `${i.name} is low (${i.quantity} left)` }));
+    (comp.data ?? []).slice(0, 2).forEach((c) => a.push({ kind: "compliance", text: `${c.title} — ${c.status}` }));
+    setAlerts(a);
+  }
+
+  useEffect(() => {
+    load();
+    const ch = supabase.channel("dash")
+      .on("postgres_changes", { event: "*", schema: "public" }, () => load())
+      .subscribe();
+    return () => { supabase.removeChannel(ch); };
+  }, []);
+
+  const monthLabel = useMemo(() => format(new Date(), "MMMM yyyy"), []);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+    <div className="pb-12">
+      <PageHeader
+        eyebrow="Dashboard"
+        title="Welcome back"
+        description="Here's a calm, current view of the home today."
+        actions={
+          <>
+            <Button variant="outline" className="gap-2"><Calendar className="h-4 w-4" />{monthLabel}</Button>
+            <Button asChild className="gap-2"><Link to="/donations"><Plus className="h-4 w-4" />New donation</Link></Button>
+          </>
+        }
       />
+
+      <div className="space-y-6 px-6 pt-6 lg:px-10">
+        {/* Hero card */}
+        <Card className="overflow-hidden border-primary-soft/40 shadow-soft float-in">
+          <div className="grid lg:grid-cols-[1.3fr_1fr]">
+            <div className="p-8 lg:p-10">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Havenlight Home · Accra</p>
+              <h2 className="mt-2 font-display text-4xl font-bold leading-[1.05] lg:text-5xl">
+                {stats.children} children, supported with care, dignity and hope.
+              </h2>
+              <p className="mt-4 max-w-xl text-sm text-muted-foreground">
+                {alerts.length === 0
+                  ? "All operational signals are healthy today."
+                  : `${stats.lowStock + stats.expiring} welfare alerts and ${stats.overdueCompliance} overdue compliance items need your attention this week.`}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                <Badge variant="secondary" className="bg-success/15 text-success">Healthy</Badge>
+                <Badge variant="outline">{stats.lowStock + stats.expiring} alerts</Badge>
+                <Badge variant="outline">{stats.overdueCompliance} overdue</Badge>
+              </div>
+            </div>
+            <div className="relative min-h-[260px]">
+              <img src={home} alt="Havenlight home exterior" className="absolute inset-0 h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-card via-card/60 to-transparent lg:bg-gradient-to-r" />
+            </div>
+          </div>
+        </Card>
+
+        {/* Stat grid */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <StatCard icon={Users} label="Children in care" value={stats.children} accent="text-primary" />
+          <StatCard icon={HeartHandshake} label="Active sponsors" value={stats.sponsors} accent="text-success" />
+          <StatCard icon={Package} label="Low stock items" value={stats.lowStock} accent="text-warning" />
+          <StatCard icon={AlertTriangle} label="Compliance overdue" value={stats.overdueCompliance} accent="text-destructive" />
+        </div>
+
+        {/* Donations chart */}
+        <div className="grid gap-4 lg:grid-cols-3">
+          <Card className="lg:col-span-2 p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Donations · 30 days</p>
+                <h3 className="mt-1 font-display text-2xl font-bold">
+                  GHS {stats.monthDonations.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                </h3>
+              </div>
+              <Badge variant="outline" className="gap-1"><TrendingUp className="h-3 w-3" /> live</Badge>
+            </div>
+            <div className="mt-4 h-56">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={trend}>
+                  <defs>
+                    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="oklch(0.45 0.13 152)" stopOpacity={0.45} />
+                      <stop offset="100%" stopColor="oklch(0.45 0.13 152)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" opacity={0.2} vertical={false} />
+                  <XAxis dataKey="day" tick={{ fontSize: 11 }} interval={4} />
+                  <YAxis tick={{ fontSize: 11 }} />
+                  <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid var(--border)", background: "var(--card)" }} />
+                  <Area type="monotone" dataKey="amount" stroke="oklch(0.45 0.13 152)" strokeWidth={2} fill="url(#g1)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </Card>
+
+          <Card className="p-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Live alerts</p>
+            <div className="mt-4 space-y-3">
+              {alerts.length === 0 && <p className="text-sm text-muted-foreground">No alerts. Everything calm.</p>}
+              {alerts.map((a, i) => (
+                <div key={i} className="flex items-start gap-3 rounded-xl border border-border/60 p-3">
+                  <span className="mt-1.5 h-2 w-2 rounded-full bg-warning live-dot" />
+                  <div className="text-sm">
+                    <p className="font-medium capitalize">{a.kind}</p>
+                    <p className="text-muted-foreground">{a.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
+
+        {/* Recent + upcoming */}
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Card className="p-6">
+            <div className="flex items-center justify-between">
+              <h3 className="font-display text-lg font-semibold">Recent donations</h3>
+              <Link to="/donations" className="text-xs text-primary underline">View all</Link>
+            </div>
+            <div className="mt-4 divide-y divide-border/60">
+              {recentDonations.length === 0 && <p className="py-6 text-sm text-muted-foreground">No donations yet — record your first one.</p>}
+              {recentDonations.map((d) => (
+                <div key={d.id} className="flex items-center justify-between py-3">
+                  <div>
+                    <p className="text-sm font-medium">{d.sponsors?.name ?? "Anonymous"}</p>
+                    <p className="text-xs text-muted-foreground">{format(new Date(d.donation_date), "MMM d, yyyy")}</p>
+                  </div>
+                  <p className="font-semibold">{d.currency} {Number(d.amount).toLocaleString()}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          <Card className="p-6">
+            <div className="flex items-center justify-between">
+              <h3 className="font-display text-lg font-semibold">Upcoming events</h3>
+              <Link to="/events" className="text-xs text-primary underline">View all</Link>
+            </div>
+            <div className="mt-4 divide-y divide-border/60">
+              {upcoming.length === 0 && <p className="py-6 text-sm text-muted-foreground">No events scheduled.</p>}
+              {upcoming.map((e) => (
+                <div key={e.id} className="flex items-center justify-between py-3">
+                  <div>
+                    <p className="text-sm font-medium">{e.title}</p>
+                    <p className="text-xs text-muted-foreground">{e.location ?? "—"}</p>
+                  </div>
+                  <p className="text-xs text-muted-foreground">{format(new Date(e.start_at), "MMM d · HH:mm")}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
 
-function Index() {
-  return <PlaceholderIndex />;
+function StatCard({ icon: Icon, label, value, accent }: { icon: any; label: string; value: number; accent: string }) {
+  return (
+    <Card className="p-5 count-in">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</p>
+        <Icon className={`h-4 w-4 ${accent}`} />
+      </div>
+      <p className="mt-3 font-display text-3xl font-bold">{value}</p>
+    </Card>
+  );
 }
