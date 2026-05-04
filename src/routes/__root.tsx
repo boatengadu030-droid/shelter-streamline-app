@@ -4,8 +4,8 @@ import { AuthProvider, useAuth } from "@/lib/auth";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { useRouterState } from "@tanstack/react-router";
 import { Sprout } from "lucide-react";
+import { AuthPage } from "@/components/auth-page";
 
 function NotFound() {
   return (
@@ -25,7 +25,7 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Havenlight — Orphanage Management" },
-      { name: "description", content: "Care, dignity and hope — operations OS for modern orphanages." },
+      { name: "description", content: "Care, dignity and hope — the operations OS for modern orphanages." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -59,7 +59,6 @@ function RootComponent() {
 
 function Shell() {
   const { user, loading } = useAuth();
-  const path = useRouterState({ select: (r) => r.location.pathname });
 
   if (loading) {
     return (
@@ -72,14 +71,7 @@ function Shell() {
     );
   }
 
-  // Auth route stands alone
-  if (path.startsWith("/auth") || !user) {
-    if (!user && !path.startsWith("/auth")) {
-      // Redirect-like: render the auth page
-      return <AuthGate />;
-    }
-    return <Outlet />;
-  }
+  if (!user) return <AuthPage />;
 
   return (
     <SidebarProvider>
@@ -90,7 +82,7 @@ function Shell() {
             <SidebarTrigger />
             <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
               <span className="live-dot inline-block h-2 w-2 rounded-full bg-success" />
-              Live
+              Live data
             </div>
           </header>
           <main className="flex-1"><Outlet /></main>
@@ -98,10 +90,4 @@ function Shell() {
       </div>
     </SidebarProvider>
   );
-}
-
-function AuthGate() {
-  // dynamically import to avoid SSR window issues
-  // The /auth route component handles UI; here we just render Outlet bound to root
-  return <Outlet />;
 }
