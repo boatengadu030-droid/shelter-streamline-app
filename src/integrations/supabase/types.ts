@@ -14,16 +14,595 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      audit_logs: {
+        Row: {
+          action: string
+          created_at: string
+          entity_id: string | null
+          entity_table: string | null
+          id: string
+          metadata: Json | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          entity_id?: string | null
+          entity_table?: string | null
+          id?: string
+          metadata?: Json | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          entity_id?: string | null
+          entity_table?: string | null
+          id?: string
+          metadata?: Json | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      children: {
+        Row: {
+          child_code: string
+          created_at: string
+          created_by: string | null
+          current_grade: string | null
+          date_of_birth: string | null
+          education_status: string | null
+          full_name: string
+          gender: Database["public"]["Enums"]["gender_type"] | null
+          guardian_info: string | null
+          health_notes: string | null
+          id: string
+          intake_date: string
+          is_sensitive: boolean
+          photo_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          child_code?: string
+          created_at?: string
+          created_by?: string | null
+          current_grade?: string | null
+          date_of_birth?: string | null
+          education_status?: string | null
+          full_name: string
+          gender?: Database["public"]["Enums"]["gender_type"] | null
+          guardian_info?: string | null
+          health_notes?: string | null
+          id?: string
+          intake_date?: string
+          is_sensitive?: boolean
+          photo_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          child_code?: string
+          created_at?: string
+          created_by?: string | null
+          current_grade?: string | null
+          date_of_birth?: string | null
+          education_status?: string | null
+          full_name?: string
+          gender?: Database["public"]["Enums"]["gender_type"] | null
+          guardian_info?: string | null
+          health_notes?: string | null
+          id?: string
+          intake_date?: string
+          is_sensitive?: boolean
+          photo_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      compliance_records: {
+        Row: {
+          category: string
+          completed_date: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          due_date: string | null
+          id: string
+          responsible_user: string | null
+          status: Database["public"]["Enums"]["compliance_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          completed_date?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          responsible_user?: string | null
+          status?: Database["public"]["Enums"]["compliance_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          completed_date?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          responsible_user?: string | null
+          status?: Database["public"]["Enums"]["compliance_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      documents: {
+        Row: {
+          bucket: string
+          created_at: string
+          doc_kind: string | null
+          file_name: string
+          file_type: string | null
+          id: string
+          owner_id: string
+          owner_table: string
+          storage_path: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          bucket: string
+          created_at?: string
+          doc_kind?: string | null
+          file_name: string
+          file_type?: string | null
+          id?: string
+          owner_id: string
+          owner_table: string
+          storage_path: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          bucket?: string
+          created_at?: string
+          doc_kind?: string | null
+          file_name?: string
+          file_type?: string | null
+          id?: string
+          owner_id?: string
+          owner_table?: string
+          storage_path?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
+      donations: {
+        Row: {
+          amount: number
+          category: Database["public"]["Enums"]["sponsorship_category"] | null
+          created_at: string
+          created_by: string | null
+          currency: string
+          donation_date: string
+          frequency: Database["public"]["Enums"]["donation_frequency"]
+          id: string
+          notes: string | null
+          sponsor_id: string | null
+          target_child_id: string | null
+          target_event_id: string | null
+          target_inventory_id: string | null
+          target_type: Database["public"]["Enums"]["sponsorship_target"]
+        }
+        Insert: {
+          amount?: number
+          category?: Database["public"]["Enums"]["sponsorship_category"] | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          donation_date?: string
+          frequency?: Database["public"]["Enums"]["donation_frequency"]
+          id?: string
+          notes?: string | null
+          sponsor_id?: string | null
+          target_child_id?: string | null
+          target_event_id?: string | null
+          target_inventory_id?: string | null
+          target_type?: Database["public"]["Enums"]["sponsorship_target"]
+        }
+        Update: {
+          amount?: number
+          category?: Database["public"]["Enums"]["sponsorship_category"] | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          donation_date?: string
+          frequency?: Database["public"]["Enums"]["donation_frequency"]
+          id?: string
+          notes?: string | null
+          sponsor_id?: string | null
+          target_child_id?: string | null
+          target_event_id?: string | null
+          target_inventory_id?: string | null
+          target_type?: Database["public"]["Enums"]["sponsorship_target"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "donations_sponsor_id_fkey"
+            columns: ["sponsor_id"]
+            isOneToOne: false
+            referencedRelation: "sponsors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "donations_target_child_id_fkey"
+            columns: ["target_child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "donations_target_inventory_id_fkey"
+            columns: ["target_inventory_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      event_attendees: {
+        Row: {
+          attended: boolean | null
+          child_id: string | null
+          created_at: string
+          event_id: string
+          id: string
+          role: string | null
+          user_id: string | null
+        }
+        Insert: {
+          attended?: boolean | null
+          child_id?: string | null
+          created_at?: string
+          event_id: string
+          id?: string
+          role?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          attended?: boolean | null
+          child_id?: string | null
+          created_at?: string
+          event_id?: string
+          id?: string
+          role?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_attendees_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "event_attendees_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          cover_image_url: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          end_at: string | null
+          id: string
+          location: string | null
+          start_at: string
+          status: Database["public"]["Enums"]["event_status"]
+          title: string
+        }
+        Insert: {
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_at?: string | null
+          id?: string
+          location?: string | null
+          start_at: string
+          status?: Database["public"]["Enums"]["event_status"]
+          title: string
+        }
+        Update: {
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_at?: string | null
+          id?: string
+          location?: string | null
+          start_at?: string
+          status?: Database["public"]["Enums"]["event_status"]
+          title?: string
+        }
+        Relationships: []
+      }
+      inventory_items: {
+        Row: {
+          category: Database["public"]["Enums"]["inventory_category"]
+          created_at: string
+          created_by: string | null
+          expiry_date: string | null
+          id: string
+          inv_code: string
+          location: string | null
+          low_stock_threshold: number
+          name: string
+          notes: string | null
+          quantity: number
+          unit: string
+          updated_at: string
+        }
+        Insert: {
+          category?: Database["public"]["Enums"]["inventory_category"]
+          created_at?: string
+          created_by?: string | null
+          expiry_date?: string | null
+          id?: string
+          inv_code?: string
+          location?: string | null
+          low_stock_threshold?: number
+          name: string
+          notes?: string | null
+          quantity?: number
+          unit?: string
+          updated_at?: string
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["inventory_category"]
+          created_at?: string
+          created_by?: string | null
+          expiry_date?: string | null
+          id?: string
+          inv_code?: string
+          location?: string | null
+          low_stock_threshold?: number
+          name?: string
+          notes?: string | null
+          quantity?: number
+          unit?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      inventory_logs: {
+        Row: {
+          created_at: string
+          id: string
+          item_id: string
+          movement: Database["public"]["Enums"]["inventory_movement"]
+          performed_by: string | null
+          quantity: number
+          reason: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          item_id: string
+          movement: Database["public"]["Enums"]["inventory_movement"]
+          performed_by?: string | null
+          quantity: number
+          reason?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          item_id?: string
+          movement?: Database["public"]["Enums"]["inventory_movement"]
+          performed_by?: string | null
+          quantity?: number
+          reason?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventory_logs_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          full_name?: string
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      sponsors: {
+        Row: {
+          address: string | null
+          contact_person: string | null
+          created_at: string
+          created_by: string | null
+          email: string | null
+          id: string
+          name: string
+          notes: string | null
+          phone: string | null
+          type: Database["public"]["Enums"]["sponsor_type"]
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          contact_person?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          phone?: string | null
+          type?: Database["public"]["Enums"]["sponsor_type"]
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          contact_person?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          type?: Database["public"]["Enums"]["sponsor_type"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      staff: {
+        Row: {
+          background_check_date: string | null
+          background_check_done: boolean
+          certifications: string | null
+          created_at: string
+          created_by: string | null
+          email: string | null
+          full_name: string
+          hire_date: string | null
+          id: string
+          is_volunteer: boolean
+          notes: string | null
+          phone: string | null
+          position: string | null
+          shift_schedule: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          background_check_date?: string | null
+          background_check_done?: boolean
+          certifications?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          full_name: string
+          hire_date?: string | null
+          id?: string
+          is_volunteer?: boolean
+          notes?: string | null
+          phone?: string | null
+          position?: string | null
+          shift_schedule?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          background_check_date?: string | null
+          background_check_done?: boolean
+          certifications?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          full_name?: string
+          hire_date?: string | null
+          id?: string
+          is_volunteer?: boolean
+          notes?: string | null
+          phone?: string | null
+          position?: string | null
+          shift_schedule?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      can_read: { Args: { _user_id: string }; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_staff_or_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "staff" | "volunteer" | "auditor"
+      compliance_status: "pending" | "compliant" | "overdue" | "expired"
+      donation_frequency: "one_time" | "monthly" | "quarterly" | "yearly"
+      event_status: "upcoming" | "ongoing" | "completed" | "cancelled"
+      gender_type: "male" | "female" | "other"
+      inventory_category: "food" | "clothing" | "medical" | "asset" | "other"
+      inventory_movement: "in" | "out" | "adjust" | "expired"
+      sponsor_type: "individual" | "foundation" | "corporate"
+      sponsorship_category:
+        | "education"
+        | "feeding"
+        | "health"
+        | "clothing"
+        | "other"
+      sponsorship_target: "child" | "event" | "inventory" | "general"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +729,23 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "staff", "volunteer", "auditor"],
+      compliance_status: ["pending", "compliant", "overdue", "expired"],
+      donation_frequency: ["one_time", "monthly", "quarterly", "yearly"],
+      event_status: ["upcoming", "ongoing", "completed", "cancelled"],
+      gender_type: ["male", "female", "other"],
+      inventory_category: ["food", "clothing", "medical", "asset", "other"],
+      inventory_movement: ["in", "out", "adjust", "expired"],
+      sponsor_type: ["individual", "foundation", "corporate"],
+      sponsorship_category: [
+        "education",
+        "feeding",
+        "health",
+        "clothing",
+        "other",
+      ],
+      sponsorship_target: ["child", "event", "inventory", "general"],
+    },
   },
 } as const
