@@ -6,7 +6,7 @@ export function useTable<T = any>(table: string, opts?: { order?: { column: stri
   const [loading, setLoading] = useState(true);
 
   async function load() {
-    let q = supabase.from(table).select("*");
+    let q = (supabase.from(table as any) as any).select("*");
     if (opts?.order) q = q.order(opts.order.column, { ascending: opts.order.ascending ?? false });
     const { data } = await q;
     setRows((data ?? []) as T[]);
