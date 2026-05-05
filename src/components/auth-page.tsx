@@ -6,10 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Sprout } from "lucide-react";
+import { Sprout, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 
-export function AuthPage() {
+export function AuthPage({ onBack }: { onBack?: () => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -72,6 +72,11 @@ export function AuthPage() {
 
       <div className="flex items-center justify-center px-6 py-12">
         <Card className="w-full max-w-md p-8 shadow-soft">
+          {onBack && (
+            <button onClick={onBack} className="mb-4 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition hover:text-foreground">
+              <ArrowLeft className="h-3.5 w-3.5" /> Back to home
+            </button>
+          )}
           <h2 className="font-display text-3xl font-bold">Welcome</h2>
           <p className="mt-1 text-sm text-muted-foreground">Sign in to continue, or create your home's first account.</p>
 

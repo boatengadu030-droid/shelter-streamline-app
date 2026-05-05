@@ -8,7 +8,7 @@ import { Sprout } from "lucide-react";
 import { AuthPage } from "@/components/auth-page";
 import { LandingPage } from "@/components/landing-page";
 import { NotificationsBell } from "@/components/notifications-bell";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function NotFound() {
   return (
@@ -75,7 +75,10 @@ function Shell() {
   }
 
   const [showAuth, setShowAuth] = useState(false);
-  if (!user) return showAuth ? <AuthPage /> : <LandingPage onEnter={() => setShowAuth(true)} />;
+  useEffect(() => { if (!user) setShowAuth(false); }, [user]);
+  if (!user) return showAuth
+    ? <AuthPage onBack={() => setShowAuth(false)} />
+    : <LandingPage onEnter={() => setShowAuth(true)} />;
 
   return (
     <SidebarProvider>
