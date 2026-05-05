@@ -6,6 +6,9 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { Sprout } from "lucide-react";
 import { AuthPage } from "@/components/auth-page";
+import { LandingPage } from "@/components/landing-page";
+import { NotificationsBell } from "@/components/notifications-bell";
+import { useState } from "react";
 
 function NotFound() {
   return (
@@ -71,7 +74,8 @@ function Shell() {
     );
   }
 
-  if (!user) return <AuthPage />;
+  const [showAuth, setShowAuth] = useState(false);
+  if (!user) return showAuth ? <AuthPage /> : <LandingPage onEnter={() => setShowAuth(true)} />;
 
   return (
     <SidebarProvider>
@@ -80,9 +84,12 @@ function Shell() {
         <div className="flex min-h-screen flex-1 flex-col">
           <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-border/60 bg-background/80 px-4 backdrop-blur">
             <SidebarTrigger />
-            <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="live-dot inline-block h-2 w-2 rounded-full bg-success" />
-              Live data
+            <div className="ml-auto flex items-center gap-3 text-xs text-muted-foreground">
+              <span className="flex items-center gap-2">
+                <span className="live-dot inline-block h-2 w-2 rounded-full bg-success" />
+                Live data
+              </span>
+              <NotificationsBell />
             </div>
           </header>
           <main className="flex-1"><Outlet /></main>
