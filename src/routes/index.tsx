@@ -104,27 +104,62 @@ function Dashboard() {
 
       <div className="space-y-6 px-6 pt-6 lg:px-10">
         {/* Hero card */}
-        <Card className="overflow-hidden border-primary-soft/40 shadow-soft float-in">
-          <div className="grid lg:grid-cols-[1.3fr_1fr]">
-            <div className="p-8 lg:p-10">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Havenlight Home · Accra</p>
-              <h2 className="mt-2 font-display text-4xl font-bold leading-[1.05] lg:text-5xl">
-                {stats.children} children, supported with care, dignity and hope.
+        <Card className="relative overflow-hidden border-0 shadow-elegant float-in min-h-[340px]">
+          <img
+            src="https://images.unsplash.com/photo-1602052793312-b9plus3b3hc8?w=1600&q=80&auto=format&fit=crop"
+            srcSet="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80&auto=format&fit=crop 1x"
+            alt="Children laughing together"
+            className="absolute inset-0 h-full w-full object-cover"
+            onError={(e) => { (e.currentTarget as HTMLImageElement).src = "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80&auto=format&fit=crop"; }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+          <div className="relative grid gap-6 p-8 lg:grid-cols-[1.4fr_1fr] lg:p-12">
+            <div className="text-primary-foreground">
+              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-primary-foreground/80">
+                <MapPin className="h-3 w-3" /> Havenlight Home · Accra
+              </div>
+              <h2 className="mt-3 font-display text-4xl font-bold leading-[1.05] lg:text-6xl">
+                {stats.children} {stats.children === 1 ? "child" : "children"},<br />
+                <span className="italic font-normal opacity-95">cared for today.</span>
               </h2>
-              <p className="mt-4 max-w-xl text-sm text-muted-foreground">
+              <p className="mt-4 max-w-lg text-sm text-primary-foreground/85 lg:text-base">
                 {alerts.length === 0
-                  ? "All operational signals are healthy today."
+                  ? "Every signal is calm. The home is running smoothly across welfare, inventory and compliance."
                   : `${stats.lowStock + stats.expiring} welfare alerts and ${stats.overdueCompliance} overdue compliance items need your attention this week.`}
               </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                <Badge variant="secondary" className="bg-success/15 text-success">Healthy</Badge>
-                <Badge variant="outline">{stats.lowStock + stats.expiring} alerts</Badge>
-                <Badge variant="outline">{stats.overdueCompliance} overdue</Badge>
+              <div className="mt-6 flex flex-wrap gap-2">
+                <Badge className="bg-white/15 text-primary-foreground border-white/20 backdrop-blur hover:bg-white/25">
+                  <Sparkles className="mr-1 h-3 w-3" /> {alerts.length === 0 ? "All systems healthy" : `${alerts.length} live alerts`}
+                </Badge>
+                <Badge variant="outline" className="border-white/30 text-primary-foreground bg-white/5 backdrop-blur">
+                  {stats.sponsors} active sponsors
+                </Badge>
+                <Badge variant="outline" className="border-white/30 text-primary-foreground bg-white/5 backdrop-blur">
+                  GHS {stats.totalDonations.toLocaleString(undefined, { maximumFractionDigits: 0 })} raised
+                </Badge>
               </div>
             </div>
-            <div className="relative min-h-[260px]">
-              <img src={home} alt="Havenlight home exterior" className="absolute inset-0 h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-r from-card via-card/60 to-transparent lg:bg-gradient-to-r" />
+
+            <div className="hidden lg:flex flex-col justify-end gap-3">
+              <div className="rounded-2xl bg-white/10 p-5 backdrop-blur-md border border-white/15 text-primary-foreground">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] opacity-80">This month</p>
+                <p className="mt-1 font-display text-3xl font-bold">
+                  GHS {stats.monthDonations.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                </p>
+                <p className="text-xs opacity-80">in donations received</p>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-2xl bg-white/10 p-4 backdrop-blur-md border border-white/15 text-primary-foreground">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider opacity-80">Events</p>
+                  <p className="mt-1 font-display text-2xl font-bold">{stats.upcomingEvents}</p>
+                </div>
+                <div className="rounded-2xl bg-white/10 p-4 backdrop-blur-md border border-white/15 text-primary-foreground">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider opacity-80">Low stock</p>
+                  <p className="mt-1 font-display text-2xl font-bold">{stats.lowStock}</p>
+                </div>
+              </div>
             </div>
           </div>
         </Card>
