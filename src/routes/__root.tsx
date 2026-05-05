@@ -100,8 +100,6 @@ function Shell() {
         </div>
       </div>
       <AssistantWidget />
-        </div>
-      </div>
     </SidebarProvider>
   );
 }
