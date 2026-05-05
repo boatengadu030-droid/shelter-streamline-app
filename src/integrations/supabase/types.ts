@@ -578,6 +578,7 @@ export type Database = {
     }
     Functions: {
       can_read: { Args: { _user_id: string }; Returns: boolean }
+      get_landing_stats: { Args: never; Returns: Json }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
