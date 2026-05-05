@@ -151,9 +151,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </main>
 
       <footer className="relative z-10 shrink-0 border-t border-border/60 bg-background/70 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 text-[11px] text-muted-foreground">
+        <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-3 text-[11px] text-muted-foreground">
           <p>© Havenlight {new Date().getFullYear()} · Care, dignity and hope.</p>
-          <button onClick={onEnter} className="font-medium text-primary hover:underline">Enter dashboard →</button>
         </div>
       </footer>
     </div>
