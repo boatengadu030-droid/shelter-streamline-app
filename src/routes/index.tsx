@@ -106,11 +106,9 @@ function Dashboard() {
         {/* Hero card */}
         <Card className="relative overflow-hidden border-0 shadow-elegant float-in min-h-[340px]">
           <img
-            src="https://images.unsplash.com/photo-1602052793312-b9plus3b3hc8?w=1600&q=80&auto=format&fit=crop"
-            srcSet="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80&auto=format&fit=crop 1x"
+            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80&auto=format&fit=crop"
             alt="Children laughing together"
             className="absolute inset-0 h-full w-full object-cover"
-            onError={(e) => { (e.currentTarget as HTMLImageElement).src = "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80&auto=format&fit=crop"; }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
