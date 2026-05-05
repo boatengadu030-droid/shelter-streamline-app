@@ -8,6 +8,7 @@ import { Sprout } from "lucide-react";
 import { AuthPage } from "@/components/auth-page";
 import { LandingPage } from "@/components/landing-page";
 import { NotificationsBell } from "@/components/notifications-bell";
+import { AssistantWidget } from "@/components/assistant-widget";
 import { useEffect, useState } from "react";
 
 function NotFound() {
