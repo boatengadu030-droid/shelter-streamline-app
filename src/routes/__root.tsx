@@ -63,6 +63,8 @@ function RootComponent() {
 
 function Shell() {
   const { user, loading } = useAuth();
+  const [showAuth, setShowAuth] = useState(false);
+  useEffect(() => { if (!user) setShowAuth(false); }, [user]);
 
   if (loading) {
     return (
@@ -75,8 +77,6 @@ function Shell() {
     );
   }
 
-  const [showAuth, setShowAuth] = useState(false);
-  useEffect(() => { if (!user) setShowAuth(false); }, [user]);
   if (!user) return showAuth
     ? <AuthPage onBack={() => setShowAuth(false)} />
     : <LandingPage onEnter={() => setShowAuth(true)} />;
