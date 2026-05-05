@@ -45,10 +45,24 @@ export function AuthPage({ onBack }: { onBack?: () => void }) {
 
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
-      <div className="relative hidden overflow-hidden bg-primary lg:block">
-        <div className="absolute inset-0 opacity-30 mix-blend-soft-light shimmer" />
+      <div className="relative hidden overflow-hidden lg:block">
+        {/* Real background photograph */}
+        <img
+          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80"
+          alt="Children laughing together in warm afternoon light"
+          className="absolute inset-0 h-full w-full object-cover animate-[kenburns_24s_ease-in-out_infinite_alternate]"
+        />
+        {/* Green brand overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary/75 to-primary/95" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary-foreground)/0.18),transparent_60%)]" />
+        <div className="absolute inset-0 opacity-20 mix-blend-soft-light shimmer" />
+
+        {/* Floating decorative orbs */}
+        <div className="pointer-events-none absolute -left-20 top-1/3 h-72 w-72 rounded-full bg-primary-foreground/10 blur-3xl animate-[float_9s_ease-in-out_infinite]" />
+        <div className="pointer-events-none absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-primary-foreground/10 blur-3xl animate-[float_11s_ease-in-out_infinite_reverse]" />
+
         <div className="relative flex h-full flex-col justify-between p-12 text-primary-foreground">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 animate-fade-in">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur">
               <Sprout className="h-5 w-5" />
             </div>
@@ -57,21 +71,26 @@ export function AuthPage({ onBack }: { onBack?: () => void }) {
               <p className="text-[10px] tracking-[0.18em] opacity-80">ORPHANAGE OS</p>
             </div>
           </div>
-          <div className="float-in">
-            <h1 className="font-display text-5xl font-bold leading-[1.05]">
+          <div className="float-in" style={{ animationDelay: "120ms" }}>
+            <h1 className="font-display text-5xl font-bold leading-[1.05] drop-shadow-sm">
               Care, dignity and hope — measured every day.
             </h1>
-            <p className="mt-6 max-w-md text-base opacity-90">
+            <p className="mt-6 max-w-md text-base opacity-95">
               A calm operations system for the people who run children's homes. Children, sponsors,
               compliance and inventory — in one quiet place.
             </p>
+            <div className="mt-8 flex gap-6 text-xs opacity-90">
+              <div><div className="font-display text-2xl font-bold">120+</div>Homes supported</div>
+              <div><div className="font-display text-2xl font-bold">4,800</div>Children cared for</div>
+              <div><div className="font-display text-2xl font-bold">98%</div>Compliance rate</div>
+            </div>
           </div>
           <div className="text-xs opacity-70">© Havenlight {new Date().getFullYear()}</div>
         </div>
       </div>
 
-      <div className="flex items-center justify-center px-6 py-12">
-        <Card className="w-full max-w-md p-8 shadow-soft">
+      <div className="flex items-center justify-center px-6 py-12 animate-fade-in">
+        <Card className="w-full max-w-md p-8 shadow-soft animate-scale-in">
           {onBack && (
             <button onClick={onBack} className="mb-4 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition hover:text-foreground">
               <ArrowLeft className="h-3.5 w-3.5" /> Back to home
