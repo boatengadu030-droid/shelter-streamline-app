@@ -75,7 +75,10 @@ function Shell() {
   }
 
   const [showAuth, setShowAuth] = useState(false);
-  if (!user) return showAuth ? <AuthPage /> : <LandingPage onEnter={() => setShowAuth(true)} />;
+  useEffect(() => { if (!user) setShowAuth(false); }, [user]);
+  if (!user) return showAuth
+    ? <AuthPage onBack={() => setShowAuth(false)} />
+    : <LandingPage onEnter={() => setShowAuth(true)} />;
 
   return (
     <SidebarProvider>
