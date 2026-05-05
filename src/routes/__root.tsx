@@ -99,6 +99,9 @@ function Shell() {
           <main className="flex-1"><Outlet /></main>
         </div>
       </div>
+      <AssistantWidget />
+        </div>
+      </div>
     </SidebarProvider>
   );
 }
