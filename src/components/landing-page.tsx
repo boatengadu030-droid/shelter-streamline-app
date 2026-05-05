@@ -118,7 +118,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                 </div>
               </div>
 
-              <div className="reveal reveal-d3 absolute -bottom-5 -left-6 hidden w-44 rotate-[-6deg] overflow-hidden rounded-2xl border border-border/60 bg-card shadow-soft drift sm:block" style={{ animationDelay: "-2s" }}>
+              <div className="reveal reveal-d3 absolute bottom-4 -left-4 hidden w-44 rotate-[-6deg] overflow-hidden rounded-2xl border border-border/60 bg-card shadow-soft drift lg:block" style={{ animationDelay: "-2s" }}>
                 <img src={photo3} alt="A child holding a seedling" className="h-24 w-full object-cover" loading="lazy" width={800} height={600} />
                 <div className="px-3 py-2">
                   <p className="text-[9px] uppercase tracking-wider text-muted-foreground">Today</p>
