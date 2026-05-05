@@ -1,16 +1,15 @@
 import { createServerFn } from "@tanstack/react-start";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 type ChatMessage = { role: "user" | "assistant" | "system"; content: string };
 
 export const askAssistant = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
   .inputValidator((input: { messages: ChatMessage[] }) => {
     if (!Array.isArray(input?.messages)) throw new Error("messages required");
     return { messages: input.messages.slice(-20) };
   })
-  .handler(async ({ data, context }) => {
-    const { supabase } = context;
+  .handler(async ({ data }) => {
+    const supabase = supabaseAdmin;
     const apiKey = process.env.LOVABLE_API_KEY;
     if (!apiKey) throw new Error("LOVABLE_API_KEY not configured");
 
