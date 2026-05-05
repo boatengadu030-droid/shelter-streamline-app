@@ -181,6 +181,15 @@
 }
 .float-in { animation: float-up 0.5s ease-out both; }
 
+@keyframes kenburns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.15) translate(-2%, -2%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(10px); }
+}
+
 @keyframes count-fade {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
