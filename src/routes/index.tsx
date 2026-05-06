@@ -9,6 +9,7 @@ import { Calendar, Plus, TrendingUp, Users, Package, AlertTriangle, HeartHandsha
 import { Link } from "@tanstack/react-router";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts";
 import { format } from "date-fns";
+import bgPhoto from "@/assets/bg.jpg";
 
 export const Route = createFileRoute("/")({ component: Dashboard });
 
@@ -107,7 +108,7 @@ function Dashboard() {
         <Card className="reveal relative overflow-hidden border-0 shadow-elegant min-h-[340px] group">
           <div className="absolute inset-0 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80&auto=format&fit=crop"
+              src={bgPhoto}
               alt="Children laughing together"
               className="absolute inset-0 h-full w-full object-cover animate-[kenburns_22s_ease-in-out_infinite_alternate] transition-transform duration-700 group-hover:scale-105"
             />
