@@ -3,7 +3,7 @@ import { Bot, Send, Sparkles, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ReactMarkdown from "react-markdown";
-import { askAssistant } from "@/server/ai-chat.functions";
+import { askAssistant } from "@/lib/ai-chat.functions";
 import { toast } from "sonner";
 
 type Msg = { role: "user" | "assistant"; content: string };
