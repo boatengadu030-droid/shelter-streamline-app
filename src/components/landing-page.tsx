@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sprout, ArrowRight, ShieldCheck, FileCheck2, Sparkles, BarChart3, HeartHandshake, Users, Package } from "lucide-react";
+import { ArrowRight, ShieldCheck, FileCheck2, Sparkles, BarChart3, HeartHandshake, Users, Package } from "lucide-react";
 import photo1 from "@/assets/landing-photo.jpg";
 import photo3 from "@/assets/landing-photo-3.jpg";
+import logo from "@/assets/logo.png";
 import { supabase } from "@/integrations/supabase/client";
 
 type Stats = {
