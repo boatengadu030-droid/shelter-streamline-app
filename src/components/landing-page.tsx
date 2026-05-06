@@ -46,8 +46,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       <header className="relative z-30 shrink-0">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-soft">
-              <Sprout className="h-5 w-5" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary-soft shadow-soft overflow-hidden">
+              <img src={logo} alt="Havenlight logo" className="h-full w-full object-contain" />
             </div>
             <div className="leading-tight">
               <p className="font-display text-lg font-bold tracking-tight">Havenlight</p>
