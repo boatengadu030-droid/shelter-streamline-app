@@ -6,8 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Sprout, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import authPhoto from "@/assets/auth.jpg";
+import logo from "@/assets/logo.png";
 import { toast } from "sonner";
 
 export function AuthPage({ onBack }: { onBack?: () => void }) {
@@ -64,8 +65,8 @@ export function AuthPage({ onBack }: { onBack?: () => void }) {
 
         <div className="relative flex h-full flex-col justify-between p-12 text-primary-foreground">
           <div className="flex items-center gap-3 animate-fade-in">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur">
-              <Sprout className="h-5 w-5" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur overflow-hidden">
+              <img src={logo} alt="Havenlight logo" className="h-full w-full object-contain" />
             </div>
             <div className="leading-tight">
               <p className="font-display text-xl font-bold">Havenlight</p>

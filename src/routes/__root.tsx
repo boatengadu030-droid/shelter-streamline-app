@@ -4,7 +4,7 @@ import { AuthProvider, useAuth } from "@/lib/auth";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { Sprout } from "lucide-react";
+import logo from "@/assets/logo.png";
 import { AuthPage } from "@/components/auth-page";
 import { LandingPage } from "@/components/landing-page";
 import { NotificationsBell } from "@/components/notifications-bell";
@@ -70,7 +70,7 @@ function Shell() {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="flex items-center gap-3 text-muted-foreground">
-          <Sprout className="h-5 w-5 animate-pulse text-primary" />
+          <img src={logo} alt="Havenlight" className="h-8 w-8 animate-pulse" />
           <span>Loading Havenlight…</span>
         </div>
       </div>
