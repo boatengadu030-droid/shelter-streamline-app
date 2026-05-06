@@ -65,7 +65,7 @@ export function AuthPage({ onBack }: { onBack?: () => void }) {
 
         <div className="relative flex h-full flex-col justify-between p-12 text-primary-foreground">
           <div className="flex items-center gap-3 animate-fade-in">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-soft p-1">
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-soft p-1.5">
               <img src={logo} alt="Havenlight logo" className="h-full w-full object-contain" />
             </div>
             <div className="leading-tight">
