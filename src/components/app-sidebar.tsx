@@ -32,7 +32,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border">
         <Link to="/" className="flex items-center gap-3 px-2 py-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-soft p-1">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-soft p-1.5">
             <img src={logo} alt="Havenlight logo" className="h-full w-full object-contain" />
           </div>
           {!collapsed && (
