@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Sprout, ArrowLeft } from "lucide-react";
+import authPhoto from "@/assets/auth.jpg";
 import { toast } from "sonner";
 
 export function AuthPage({ onBack }: { onBack?: () => void }) {
@@ -48,7 +49,7 @@ export function AuthPage({ onBack }: { onBack?: () => void }) {
       <div className="relative hidden overflow-hidden lg:block">
         {/* Real background photograph */}
         <img
-          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80"
+          src={authPhoto}
           alt="Children laughing together in warm afternoon light"
           className="absolute inset-0 h-full w-full object-cover animate-[kenburns_24s_ease-in-out_infinite_alternate]"
         />
