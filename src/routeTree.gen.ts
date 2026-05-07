@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StaffRouteImport } from './routes/staff'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DonationsRouteImport } from './routes/donations'
@@ -21,6 +22,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const StaffRoute = StaffRouteImport.update({
   id: '/staff',
   path: '/staff',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InventoryRoute = InventoryRouteImport.update({
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/donations': typeof DonationsRoute
   '/events': typeof EventsRoute
   '/inventory': typeof InventoryRoute
+  '/reports': typeof ReportsRoute
   '/staff': typeof StaffRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/donations': typeof DonationsRoute
   '/events': typeof EventsRoute
   '/inventory': typeof InventoryRoute
+  '/reports': typeof ReportsRoute
   '/staff': typeof StaffRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/donations': typeof DonationsRoute
   '/events': typeof EventsRoute
   '/inventory': typeof InventoryRoute
+  '/reports': typeof ReportsRoute
   '/staff': typeof StaffRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/donations'
     | '/events'
     | '/inventory'
+    | '/reports'
     | '/staff'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/donations'
     | '/events'
     | '/inventory'
+    | '/reports'
     | '/staff'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/donations'
     | '/events'
     | '/inventory'
+    | '/reports'
     | '/staff'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   DonationsRoute: typeof DonationsRoute
   EventsRoute: typeof EventsRoute
   InventoryRoute: typeof InventoryRoute
+  ReportsRoute: typeof ReportsRoute
   StaffRoute: typeof StaffRoute
 }
 
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/staff'
       fullPath: '/staff'
       preLoaderRoute: typeof StaffRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inventory': {
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   DonationsRoute: DonationsRoute,
   EventsRoute: EventsRoute,
   InventoryRoute: InventoryRoute,
+  ReportsRoute: ReportsRoute,
   StaffRoute: StaffRoute,
 }
 export const routeTree = rootRouteImport
