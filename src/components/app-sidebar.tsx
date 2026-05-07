@@ -32,13 +32,13 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border">
         <Link to="/" className="flex items-center gap-3 px-2 py-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary-soft shadow-soft overflow-hidden">
-            <img src={logo} alt="Havenlight logo" className="h-full w-full object-contain" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-soft p-0.5">
+            <img src={logo} alt="Child of Grace logo" className="h-full w-full object-contain" />
           </div>
           {!collapsed && (
             <div className="flex flex-col leading-tight">
-              <span className="font-display text-xl font-bold text-sidebar-foreground">Havenlight</span>
-              <span className="text-[10px] tracking-[0.18em] text-muted-foreground">ORPHANAGE OS</span>
+              <span className="font-display text-xl font-bold text-sidebar-foreground">Child of Grace</span>
+              <span className="text-[8px] tracking-[0.18em] text-muted-foreground">ORPHANAGE FOUNDATION</span>
             </div>
           )}
         </Link>
