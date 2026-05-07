@@ -65,21 +65,23 @@ export function AuthPage({ onBack }: { onBack?: () => void }) {
 
         <div className="relative flex h-full flex-col justify-between p-12 text-primary-foreground">
           <div className="flex items-center gap-3 animate-fade-in">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur overflow-hidden">
-              <img src={logo} alt="Havenlight logo" className="h-full w-full object-contain" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-soft p-0.5">
+              <img src={logo} alt="Child of Grace logo" className="h-full w-full object-contain" />
             </div>
             <div className="leading-tight">
-              <p className="font-display text-xl font-bold">Havenlight</p>
-              <p className="text-[10px] tracking-[0.18em] opacity-80">ORPHANAGE OS</p>
+              <p className="font-display text-xl font-bold">Child of Grace</p>
+              <p className="text-[10px] tracking-[0.18em] opacity-80">ORPHANAGE FOUNDATION</p>
             </div>
           </div>
           <div className="float-in" style={{ animationDelay: "120ms" }}>
             <h1 className="font-display text-5xl font-bold leading-[1.05] drop-shadow-sm">
-              Care, dignity and hope — measured every day.
+              Dignity, healing, and growth — proven through lasting impact.
+
             </h1>
             <p className="mt-6 max-w-md text-base opacity-95">
-              A calm operations system for the people who run children's homes. Children, sponsors,
-              compliance and inventory — in one quiet place.
+              Child of Grace Orphan Foundation is more than a support system; it is a purposeful movement to 
+reshape narratives, restore hope, and raise emotionally whole individuals equipped to thrive and 
+contribute meaningfully to society. 
             </p>
             <div className="mt-8 flex gap-6 text-xs opacity-90">
               <div><div className="font-display text-2xl font-bold">120+</div>Homes supported</div>
@@ -87,7 +89,7 @@ export function AuthPage({ onBack }: { onBack?: () => void }) {
               <div><div className="font-display text-2xl font-bold">98%</div>Compliance rate</div>
             </div>
           </div>
-          <div className="text-xs opacity-70">© Havenlight {new Date().getFullYear()}</div>
+          <div className="text-xs opacity-70">© Child of Grace {new Date().getFullYear()}</div>
         </div>
       </div>
 
