@@ -46,12 +46,12 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       <header className="relative z-30 shrink-0">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary-soft shadow-soft overflow-hidden">
-              <img src={logo} alt="Havenlight logo" className="h-full w-full object-contain" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-soft p-0.5">
+              <img src={logo} alt="Child of Grace logo" className="h-full w-full object-contain" />
             </div>
             <div className="leading-tight">
-              <p className="font-display text-lg font-bold tracking-tight">Havenlight</p>
-              <p className="text-[10px] tracking-[0.22em] text-muted-foreground">ORPHANAGE OS · EST. 2026</p>
+              <p className="font-display text-lg font-bold tracking-tight">Child of Grace</p>
+              <p className="text-[10px] tracking-[0.22em] text-muted-foreground">ORPHANAGE FOUNDATION</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -69,18 +69,18 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           <div className="lg:col-span-7">
             <span className="reveal inline-flex items-center gap-2 rounded-full border border-primary/20 bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-primary backdrop-blur">
               <span className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-success" />
-              Trusted by caregivers · Live
+              Healing hearts, shaping future.
             </span>
 
             <h1 className="reveal reveal-d1 mt-4 font-display text-[2.2rem] font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-[4rem]">
-              Every child has a <span className="italic text-sheen">story</span>.
+              Every child <span className="italic text-sheen">regardless of their beginning</span>
               <br />
-              We help you tell it well.
+               has value and potential.
             </h1>
 
             <p className="reveal reveal-d2 mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
-              The quiet, dependable operating system for children's homes — records,
-              sponsorships, donations, inventory and compliance, all in one calm place.
+               Our work is not defined by charity alone, 
+but by an intentional commitment towards emotional healing and mindset transformation.
             </p>
 
             <div className="reveal reveal-d3 mt-5 flex flex-wrap items-center gap-3">
@@ -114,7 +114,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                 <img src={photo1} alt="Children laughing together at a community home" className="h-full w-full object-cover" width={1080} height={1350} />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 text-primary-foreground">
-                  <p className="text-[10px] uppercase tracking-[0.22em] opacity-90">Havenlight Home · Accra</p>
+                  <p className="text-[10px] uppercase tracking-[0.22em] opacity-90">Child of Grace Home · Accra</p>
                   <p className="font-display text-2xl font-semibold">{stats.children_count} children. One care team.</p>
                 </div>
               </div>
@@ -153,7 +153,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
       <footer className="relative z-10 shrink-0 border-t border-border/60 bg-background/70 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-3 text-[11px] text-muted-foreground">
-          <p>© Havenlight {new Date().getFullYear()} · Care, dignity and hope.</p>
+          <p>© Child of Grace {new Date().getFullYear()} · Care, dignity and hope.</p>
         </div>
       </footer>
     </div>
