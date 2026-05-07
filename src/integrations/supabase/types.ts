@@ -143,7 +143,9 @@ export type Database = {
       documents: {
         Row: {
           bucket: string
+          category: string | null
           created_at: string
+          description: string | null
           doc_kind: string | null
           file_name: string
           file_type: string | null
@@ -151,11 +153,15 @@ export type Database = {
           owner_id: string
           owner_table: string
           storage_path: string
+          tags: string[] | null
+          title: string | null
           uploaded_by: string | null
         }
         Insert: {
           bucket: string
+          category?: string | null
           created_at?: string
+          description?: string | null
           doc_kind?: string | null
           file_name: string
           file_type?: string | null
@@ -163,11 +169,15 @@ export type Database = {
           owner_id: string
           owner_table: string
           storage_path: string
+          tags?: string[] | null
+          title?: string | null
           uploaded_by?: string | null
         }
         Update: {
           bucket?: string
+          category?: string | null
           created_at?: string
+          description?: string | null
           doc_kind?: string | null
           file_name?: string
           file_type?: string | null
@@ -175,6 +185,8 @@ export type Database = {
           owner_id?: string
           owner_table?: string
           storage_path?: string
+          tags?: string[] | null
+          title?: string | null
           uploaded_by?: string | null
         }
         Relationships: []

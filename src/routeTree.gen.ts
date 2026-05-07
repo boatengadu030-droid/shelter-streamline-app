@@ -10,9 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StaffRouteImport } from './routes/staff'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DonationsRouteImport } from './routes/donations'
+import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as ChildrenRouteImport } from './routes/children'
 import { Route as IndexRouteImport } from './routes/index'
@@ -20,6 +22,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const StaffRoute = StaffRouteImport.update({
   id: '/staff',
   path: '/staff',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InventoryRoute = InventoryRouteImport.update({
@@ -35,6 +42,11 @@ const EventsRoute = EventsRouteImport.update({
 const DonationsRoute = DonationsRouteImport.update({
   id: '/donations',
   path: '/donations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsRoute = DocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComplianceRoute = ComplianceRouteImport.update({
@@ -57,18 +69,22 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/children': typeof ChildrenRoute
   '/compliance': typeof ComplianceRoute
+  '/documents': typeof DocumentsRoute
   '/donations': typeof DonationsRoute
   '/events': typeof EventsRoute
   '/inventory': typeof InventoryRoute
+  '/reports': typeof ReportsRoute
   '/staff': typeof StaffRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/children': typeof ChildrenRoute
   '/compliance': typeof ComplianceRoute
+  '/documents': typeof DocumentsRoute
   '/donations': typeof DonationsRoute
   '/events': typeof EventsRoute
   '/inventory': typeof InventoryRoute
+  '/reports': typeof ReportsRoute
   '/staff': typeof StaffRoute
 }
 export interface FileRoutesById {
@@ -76,9 +92,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/children': typeof ChildrenRoute
   '/compliance': typeof ComplianceRoute
+  '/documents': typeof DocumentsRoute
   '/donations': typeof DonationsRoute
   '/events': typeof EventsRoute
   '/inventory': typeof InventoryRoute
+  '/reports': typeof ReportsRoute
   '/staff': typeof StaffRoute
 }
 export interface FileRouteTypes {
@@ -87,27 +105,33 @@ export interface FileRouteTypes {
     | '/'
     | '/children'
     | '/compliance'
+    | '/documents'
     | '/donations'
     | '/events'
     | '/inventory'
+    | '/reports'
     | '/staff'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/children'
     | '/compliance'
+    | '/documents'
     | '/donations'
     | '/events'
     | '/inventory'
+    | '/reports'
     | '/staff'
   id:
     | '__root__'
     | '/'
     | '/children'
     | '/compliance'
+    | '/documents'
     | '/donations'
     | '/events'
     | '/inventory'
+    | '/reports'
     | '/staff'
   fileRoutesById: FileRoutesById
 }
@@ -115,9 +139,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChildrenRoute: typeof ChildrenRoute
   ComplianceRoute: typeof ComplianceRoute
+  DocumentsRoute: typeof DocumentsRoute
   DonationsRoute: typeof DonationsRoute
   EventsRoute: typeof EventsRoute
   InventoryRoute: typeof InventoryRoute
+  ReportsRoute: typeof ReportsRoute
   StaffRoute: typeof StaffRoute
 }
 
@@ -128,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/staff'
       fullPath: '/staff'
       preLoaderRoute: typeof StaffRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inventory': {
@@ -149,6 +182,13 @@ declare module '@tanstack/react-router' {
       path: '/donations'
       fullPath: '/donations'
       preLoaderRoute: typeof DonationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents': {
+      id: '/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DocumentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compliance': {
@@ -179,9 +219,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChildrenRoute: ChildrenRoute,
   ComplianceRoute: ComplianceRoute,
+  DocumentsRoute: DocumentsRoute,
   DonationsRoute: DonationsRoute,
   EventsRoute: EventsRoute,
   InventoryRoute: InventoryRoute,
+  ReportsRoute: ReportsRoute,
   StaffRoute: StaffRoute,
 }
 export const routeTree = rootRouteImport

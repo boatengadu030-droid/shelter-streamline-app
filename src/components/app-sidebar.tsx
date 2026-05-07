@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   LayoutDashboard, Users, Package, HeartHandshake, ShieldCheck,
-  Calendar, UserCog, LogOut,
+  Calendar, UserCog, LogOut, BarChart3, FolderArchive,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import {
@@ -20,6 +20,8 @@ const items = [
   { title: "Compliance", url: "/compliance", icon: ShieldCheck },
   { title: "Events", url: "/events", icon: Calendar },
   { title: "Staff & Volunteers", url: "/staff", icon: UserCog },
+  { title: "Reports", url: "/reports", icon: BarChart3 },
+  { title: "Documents", url: "/documents", icon: FolderArchive },
 ];
 
 export function AppSidebar() {
