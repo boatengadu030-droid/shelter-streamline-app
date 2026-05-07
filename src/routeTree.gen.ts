@@ -13,6 +13,7 @@ import { Route as StaffRouteImport } from './routes/staff'
 import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DonationsRouteImport } from './routes/donations'
+import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as ChildrenRouteImport } from './routes/children'
 import { Route as IndexRouteImport } from './routes/index'
@@ -37,6 +38,11 @@ const DonationsRoute = DonationsRouteImport.update({
   path: '/donations',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocumentsRoute = DocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComplianceRoute = ComplianceRouteImport.update({
   id: '/compliance',
   path: '/compliance',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/children': typeof ChildrenRoute
   '/compliance': typeof ComplianceRoute
+  '/documents': typeof DocumentsRoute
   '/donations': typeof DonationsRoute
   '/events': typeof EventsRoute
   '/inventory': typeof InventoryRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/children': typeof ChildrenRoute
   '/compliance': typeof ComplianceRoute
+  '/documents': typeof DocumentsRoute
   '/donations': typeof DonationsRoute
   '/events': typeof EventsRoute
   '/inventory': typeof InventoryRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/children': typeof ChildrenRoute
   '/compliance': typeof ComplianceRoute
+  '/documents': typeof DocumentsRoute
   '/donations': typeof DonationsRoute
   '/events': typeof EventsRoute
   '/inventory': typeof InventoryRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/children'
     | '/compliance'
+    | '/documents'
     | '/donations'
     | '/events'
     | '/inventory'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/children'
     | '/compliance'
+    | '/documents'
     | '/donations'
     | '/events'
     | '/inventory'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/children'
     | '/compliance'
+    | '/documents'
     | '/donations'
     | '/events'
     | '/inventory'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChildrenRoute: typeof ChildrenRoute
   ComplianceRoute: typeof ComplianceRoute
+  DocumentsRoute: typeof DocumentsRoute
   DonationsRoute: typeof DonationsRoute
   EventsRoute: typeof EventsRoute
   InventoryRoute: typeof InventoryRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DonationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/documents': {
+      id: '/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compliance': {
       id: '/compliance'
       path: '/compliance'
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChildrenRoute: ChildrenRoute,
   ComplianceRoute: ComplianceRoute,
+  DocumentsRoute: DocumentsRoute,
   DonationsRoute: DonationsRoute,
   EventsRoute: EventsRoute,
   InventoryRoute: InventoryRoute,
@@ -187,3 +208,12 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
