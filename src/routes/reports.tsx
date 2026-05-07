@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Download, FileText, TrendingUp, Users, Package, Calendar } from "lucide-react";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, PieChart, Pie, Cell, Legend } from "recharts";
-import { format, startOfMonth, startOfQuarter, startOfYear, subMonths, subQuarters } from "date-fns";
+import { format, startOfMonth, startOfQuarter, startOfYear } from "date-fns";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import Papa from "papaparse";
