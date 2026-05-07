@@ -20,6 +20,8 @@ const items = [
   { title: "Compliance", url: "/compliance", icon: ShieldCheck },
   { title: "Events", url: "/events", icon: Calendar },
   { title: "Staff & Volunteers", url: "/staff", icon: UserCog },
+  { title: "Reports", url: "/reports", icon: BarChart3 },
+  { title: "Documents", url: "/documents", icon: FolderArchive },
 ];
 
 export function AppSidebar() {
