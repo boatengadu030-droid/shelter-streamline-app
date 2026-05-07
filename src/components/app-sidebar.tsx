@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   LayoutDashboard, Users, Package, HeartHandshake, ShieldCheck,
-  Calendar, UserCog, LogOut,
+  Calendar, UserCog, LogOut, BarChart3, FolderArchive,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import {
