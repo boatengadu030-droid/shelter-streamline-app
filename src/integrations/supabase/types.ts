@@ -604,7 +604,12 @@ export type Database = {
       app_role: "admin" | "staff" | "volunteer" | "auditor"
       compliance_status: "pending" | "compliant" | "overdue" | "expired"
       donation_frequency: "one_time" | "monthly" | "quarterly" | "yearly"
-      event_status: "upcoming" | "ongoing" | "completed" | "cancelled"
+      event_status:
+        | "upcoming"
+        | "ongoing"
+        | "completed"
+        | "cancelled"
+        | "postponed"
       gender_type: "male" | "female" | "other"
       inventory_category: "food" | "clothing" | "medical" | "asset" | "other"
       inventory_movement: "in" | "out" | "adjust" | "expired"
@@ -746,7 +751,13 @@ export const Constants = {
       app_role: ["admin", "staff", "volunteer", "auditor"],
       compliance_status: ["pending", "compliant", "overdue", "expired"],
       donation_frequency: ["one_time", "monthly", "quarterly", "yearly"],
-      event_status: ["upcoming", "ongoing", "completed", "cancelled"],
+      event_status: [
+        "upcoming",
+        "ongoing",
+        "completed",
+        "cancelled",
+        "postponed",
+      ],
       gender_type: ["male", "female", "other"],
       inventory_category: ["food", "clothing", "medical", "asset", "other"],
       inventory_movement: ["in", "out", "adjust", "expired"],
