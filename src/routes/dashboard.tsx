@@ -1,11 +1,10 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Outlet, useNavigate } from "@tanstack/react-router";
 import { useAuth } from "@/lib/auth";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { NotificationsBell } from "@/components/notifications-bell";
 import { AssistantWidget } from "@/components/assistant-widget";
 import { AuthPage } from "@/components/auth-page";
-import { useNavigate } from "@tanstack/react-router";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/dashboard")({ component: DashboardLayout });
