@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SponsorshipRouteImport } from './routes/sponsorship'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as DonateRouteImport } from './routes/donate'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -32,6 +33,11 @@ const SponsorshipRoute = SponsorshipRouteImport.update({
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRouteWithChildren
+  '/donate': typeof DonateRoute
   '/programs': typeof ProgramsRoute
   '/sponsorship': typeof SponsorshipRoute
   '/dashboard/children': typeof DashboardChildrenRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/donate': typeof DonateRoute
   '/programs': typeof ProgramsRoute
   '/sponsorship': typeof SponsorshipRoute
   '/dashboard/children': typeof DashboardChildrenRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRouteWithChildren
+  '/donate': typeof DonateRoute
   '/programs': typeof ProgramsRoute
   '/sponsorship': typeof SponsorshipRoute
   '/dashboard/children': typeof DashboardChildrenRoute
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/dashboard'
+    | '/donate'
     | '/programs'
     | '/sponsorship'
     | '/dashboard/children'
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/donate'
     | '/programs'
     | '/sponsorship'
     | '/dashboard/children'
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/dashboard'
+    | '/donate'
     | '/programs'
     | '/sponsorship'
     | '/dashboard/children'
@@ -197,6 +209,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   DashboardRoute: typeof DashboardRouteWithChildren
+  DonateRoute: typeof DonateRoute
   ProgramsRoute: typeof ProgramsRoute
   SponsorshipRoute: typeof SponsorshipRoute
 }
@@ -215,6 +228,13 @@ declare module '@tanstack/react-router' {
       path: '/programs'
       fullPath: '/programs'
       preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -336,6 +356,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   DashboardRoute: DashboardRouteWithChildren,
+  DonateRoute: DonateRoute,
   ProgramsRoute: ProgramsRoute,
   SponsorshipRoute: SponsorshipRoute,
 }
