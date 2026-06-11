@@ -52,7 +52,7 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => {
-                const active = item.url === "/" ? path === "/" : path.startsWith(item.url);
+                const active = item.url === "/dashboard" ? path === "/dashboard" : path.startsWith(item.url);
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild isActive={active} className="data-[active=true]:bg-primary-soft data-[active=true]:text-primary data-[active=true]:font-semibold">
