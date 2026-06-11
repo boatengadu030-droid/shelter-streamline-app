@@ -18,7 +18,7 @@ import { Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer,
 import { toast } from "sonner";
 import { format } from "date-fns";
 
-export const Route = createFileRoute("/donations")({ component: DonationsPage });
+export const Route = createFileRoute("/dashboard/donations")({ component: DonationsPage });
 
 const COLORS = ["oklch(0.45 0.13 152)", "oklch(0.62 0.14 152)", "oklch(0.78 0.1 145)", "oklch(0.55 0.09 175)", "oklch(0.78 0.16 70)"];
 

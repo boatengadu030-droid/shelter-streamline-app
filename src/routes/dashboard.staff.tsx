@@ -17,7 +17,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 import { uploadDoc } from "@/lib/uploads";
 
-export const Route = createFileRoute("/staff")({ component: StaffPage });
+export const Route = createFileRoute("/dashboard/staff")({ component: StaffPage });
 
 function StaffPage() {
   const { rows } = useTable<any>("staff", { order: { column: "created_at" } });

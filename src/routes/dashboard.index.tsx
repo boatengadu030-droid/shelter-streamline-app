@@ -11,7 +11,7 @@ import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianG
 import { format } from "date-fns";
 import bgPhoto from "@/assets/bg.jpg";
 
-export const Route = createFileRoute("/")({ component: Dashboard });
+export const Route = createFileRoute("/dashboard/")({ component: Dashboard });
 
 function Dashboard() {
   const [stats, setStats] = useState({

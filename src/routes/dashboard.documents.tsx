@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import { signedUrl } from "@/lib/uploads";
 import { format } from "date-fns";
 
-export const Route = createFileRoute("/documents")({ component: DocsPage });
+export const Route = createFileRoute("/dashboard/documents")({ component: DocsPage });
 
 const CATEGORIES = ["policy", "legal", "finance", "hr", "operations", "report", "other"];
 

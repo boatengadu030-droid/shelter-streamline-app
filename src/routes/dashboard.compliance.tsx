@@ -16,7 +16,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 import { uploadDoc } from "@/lib/uploads";
 
-export const Route = createFileRoute("/compliance")({ component: CompliancePage });
+export const Route = createFileRoute("/dashboard/compliance")({ component: CompliancePage });
 
 function CompliancePage() {
   const { rows } = useTable<any>("compliance_records", { order: { column: "due_date", ascending: true } });

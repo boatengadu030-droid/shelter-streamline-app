@@ -15,7 +15,7 @@ import { Plus, MapPin, Calendar, Pencil } from "lucide-react";
 import { toast } from "sonner";
 import { format } from "date-fns";
 
-export const Route = createFileRoute("/events")({ component: EventsPage });
+export const Route = createFileRoute("/dashboard/events")({ component: EventsPage });
 
 const STATUS_OPTIONS = ["upcoming", "ongoing", "completed", "postponed", "cancelled"] as const;
 
