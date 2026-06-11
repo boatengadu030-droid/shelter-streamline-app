@@ -13,15 +13,15 @@ import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 
 const items = [
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Children", url: "/children", icon: Users },
-  { title: "Inventory", url: "/inventory", icon: Package },
-  { title: "Donations & Sponsors", url: "/donations", icon: HeartHandshake },
-  { title: "Compliance", url: "/compliance", icon: ShieldCheck },
-  { title: "Events", url: "/events", icon: Calendar },
-  { title: "Staff & Volunteers", url: "/staff", icon: UserCog },
-  { title: "Reports", url: "/reports", icon: BarChart3 },
-  { title: "Documents", url: "/documents", icon: FolderArchive },
+  { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
+  { title: "Children", url: "/dashboard/children", icon: Users },
+  { title: "Inventory", url: "/dashboard/inventory", icon: Package },
+  { title: "Donations & Sponsors", url: "/dashboard/donations", icon: HeartHandshake },
+  { title: "Compliance", url: "/dashboard/compliance", icon: ShieldCheck },
+  { title: "Events", url: "/dashboard/events", icon: Calendar },
+  { title: "Staff & Volunteers", url: "/dashboard/staff", icon: UserCog },
+  { title: "Reports", url: "/dashboard/reports", icon: BarChart3 },
+  { title: "Documents", url: "/dashboard/documents", icon: FolderArchive },
 ];
 
 export function AppSidebar() {
