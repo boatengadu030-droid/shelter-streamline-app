@@ -1,15 +1,7 @@
 import { Outlet, createRootRoute, HeadContent, Scripts, Link } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
-import { AuthProvider, useAuth } from "@/lib/auth";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AuthProvider } from "@/lib/auth";
 import { Toaster } from "@/components/ui/sonner";
-import logo from "@/assets/logo.png";
-import { AuthPage } from "@/components/auth-page";
-import { LandingPage } from "@/components/landing-page";
-import { NotificationsBell } from "@/components/notifications-bell";
-import { AssistantWidget } from "@/components/assistant-widget";
-import { useEffect, useState } from "react";
 
 function NotFound() {
   return (
@@ -28,8 +20,10 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Havenlight — Orphanage Management" },
-      { name: "description", content: "Care, dignity and hope — the operations OS for modern orphanages." },
+      { title: "Child of Grace Foundation — Healing Hearts, Shaping Futures" },
+      { name: "description", content: "We restore dignity, nurture healing, and create opportunities for vulnerable children to thrive through long-term care, mentorship, education, and community support." },
+      { property: "og:site_name", content: "Child of Grace Foundation" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -55,51 +49,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <AuthProvider>
-      <Shell />
+      <Outlet />
       <Toaster richColors position="top-right" />
     </AuthProvider>
-  );
-}
-
-function Shell() {
-  const { user, loading } = useAuth();
-  const [showAuth, setShowAuth] = useState(false);
-  useEffect(() => { if (!user) setShowAuth(false); }, [user]);
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="flex items-center gap-3 text-muted-foreground">
-          <img src={logo} alt="Havenlight" className="h-8 w-8 animate-pulse" />
-          <span>Loading Havenlight…</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) return showAuth
-    ? <AuthPage onBack={() => setShowAuth(false)} />
-    : <LandingPage onEnter={() => setShowAuth(true)} />;
-
-  return (
-    <SidebarProvider>
-      <div className="flex min-h-screen w-full">
-        <AppSidebar />
-        <div className="flex min-h-screen flex-1 flex-col">
-          <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-border/60 bg-background/80 px-4 backdrop-blur">
-            <SidebarTrigger />
-            <div className="ml-auto flex items-center gap-3 text-xs text-muted-foreground">
-              <span className="flex items-center gap-2">
-                <span className="live-dot inline-block h-2 w-2 rounded-full bg-success" />
-                Live data
-              </span>
-              <NotificationsBell />
-            </div>
-          </header>
-          <main className="flex-1"><Outlet /></main>
-        </div>
-      </div>
-      <AssistantWidget />
-    </SidebarProvider>
   );
 }

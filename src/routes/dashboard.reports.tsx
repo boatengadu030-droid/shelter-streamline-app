@@ -14,7 +14,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import Papa from "papaparse";
 
-export const Route = createFileRoute("/reports")({ component: ReportsPage });
+export const Route = createFileRoute("/dashboard/reports")({ component: ReportsPage });
 
 type Period = "monthly" | "quarterly" | "midyear" | "annual";
 

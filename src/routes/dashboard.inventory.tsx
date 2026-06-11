@@ -14,7 +14,7 @@ import { Plus, AlertTriangle, Clock } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/inventory")({ component: InventoryPage });
+export const Route = createFileRoute("/dashboard/inventory")({ component: InventoryPage });
 
 function InventoryPage() {
   const { rows } = useTable<any>("inventory_items", { order: { column: "created_at" } });

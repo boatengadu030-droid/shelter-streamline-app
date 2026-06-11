@@ -16,7 +16,7 @@ import { toast } from "sonner";
 import { uploadDoc } from "@/lib/uploads";
 import { format } from "date-fns";
 
-export const Route = createFileRoute("/children")({ component: ChildrenPage });
+export const Route = createFileRoute("/dashboard/children")({ component: ChildrenPage });
 
 function ChildrenPage() {
   const { rows } = useTable<any>("children", { order: { column: "created_at" } });

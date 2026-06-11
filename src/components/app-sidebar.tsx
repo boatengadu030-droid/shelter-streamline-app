@@ -13,15 +13,15 @@ import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 
 const items = [
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Children", url: "/children", icon: Users },
-  { title: "Inventory", url: "/inventory", icon: Package },
-  { title: "Donations & Sponsors", url: "/donations", icon: HeartHandshake },
-  { title: "Compliance", url: "/compliance", icon: ShieldCheck },
-  { title: "Events", url: "/events", icon: Calendar },
-  { title: "Staff & Volunteers", url: "/staff", icon: UserCog },
-  { title: "Reports", url: "/reports", icon: BarChart3 },
-  { title: "Documents", url: "/documents", icon: FolderArchive },
+  { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
+  { title: "Children", url: "/dashboard/children", icon: Users },
+  { title: "Inventory", url: "/dashboard/inventory", icon: Package },
+  { title: "Donations & Sponsors", url: "/dashboard/donations", icon: HeartHandshake },
+  { title: "Compliance", url: "/dashboard/compliance", icon: ShieldCheck },
+  { title: "Events", url: "/dashboard/events", icon: Calendar },
+  { title: "Staff & Volunteers", url: "/dashboard/staff", icon: UserCog },
+  { title: "Reports", url: "/dashboard/reports", icon: BarChart3 },
+  { title: "Documents", url: "/dashboard/documents", icon: FolderArchive },
 ];
 
 export function AppSidebar() {
@@ -33,7 +33,7 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border">
-        <Link to="/" className="flex items-center gap-3 px-2 py-3">
+        <Link to="/dashboard" className="flex items-center gap-3 px-2 py-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-soft p-0.5">
             <img src={logo} alt="Child of Grace logo" className="h-full w-full object-contain" />
           </div>
@@ -52,7 +52,7 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => {
-                const active = item.url === "/" ? path === "/" : path.startsWith(item.url);
+                const active = item.url === "/dashboard" ? path === "/dashboard" : path.startsWith(item.url);
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild isActive={active} className="data-[active=true]:bg-primary-soft data-[active=true]:text-primary data-[active=true]:font-semibold">
