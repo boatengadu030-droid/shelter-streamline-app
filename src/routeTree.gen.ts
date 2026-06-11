@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardStaffRouteImport } from './routes/dashboard.staff'
 import { Route as DashboardReportsRouteImport } from './routes/dashboard.reports'
@@ -19,53 +20,59 @@ import { Route as DashboardDocumentsRouteImport } from './routes/dashboard.docum
 import { Route as DashboardComplianceRouteImport } from './routes/dashboard.compliance'
 import { Route as DashboardChildrenRouteImport } from './routes/dashboard.children'
 
-const DashboardIndexRoute = DashboardIndexRouteImport.update({
-  id: '/dashboard/',
-  path: '/dashboard/',
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardStaffRoute = DashboardStaffRouteImport.update({
-  id: '/dashboard/staff',
-  path: '/dashboard/staff',
-  getParentRoute: () => rootRouteImport,
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardReportsRoute = DashboardReportsRouteImport.update({
-  id: '/dashboard/reports',
-  path: '/dashboard/reports',
-  getParentRoute: () => rootRouteImport,
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardInventoryRoute = DashboardInventoryRouteImport.update({
-  id: '/dashboard/inventory',
-  path: '/dashboard/inventory',
-  getParentRoute: () => rootRouteImport,
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardEventsRoute = DashboardEventsRouteImport.update({
-  id: '/dashboard/events',
-  path: '/dashboard/events',
-  getParentRoute: () => rootRouteImport,
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardDonationsRoute = DashboardDonationsRouteImport.update({
-  id: '/dashboard/donations',
-  path: '/dashboard/donations',
-  getParentRoute: () => rootRouteImport,
+  id: '/donations',
+  path: '/donations',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardDocumentsRoute = DashboardDocumentsRouteImport.update({
-  id: '/dashboard/documents',
-  path: '/dashboard/documents',
-  getParentRoute: () => rootRouteImport,
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardComplianceRoute = DashboardComplianceRouteImport.update({
-  id: '/dashboard/compliance',
-  path: '/dashboard/compliance',
-  getParentRoute: () => rootRouteImport,
+  id: '/compliance',
+  path: '/compliance',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardChildrenRoute = DashboardChildrenRouteImport.update({
-  id: '/dashboard/children',
-  path: '/dashboard/children',
-  getParentRoute: () => rootRouteImport,
+  id: '/children',
+  path: '/children',
+  getParentRoute: () => DashboardRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/dashboard': typeof DashboardRouteWithChildren
   '/dashboard/children': typeof DashboardChildrenRoute
   '/dashboard/compliance': typeof DashboardComplianceRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/dashboard': typeof DashboardRouteWithChildren
   '/dashboard/children': typeof DashboardChildrenRoute
   '/dashboard/compliance': typeof DashboardComplianceRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/dashboard'
     | '/dashboard/children'
     | '/dashboard/compliance'
     | '/dashboard/documents'
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/dashboard'
   id:
     | '__root__'
+    | '/dashboard'
     | '/dashboard/children'
     | '/dashboard/compliance'
     | '/dashboard/documents'
@@ -136,6 +146,85 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  DashboardRoute: typeof DashboardRouteWithChildren
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/staff': {
+      id: '/dashboard/staff'
+      path: '/staff'
+      fullPath: '/dashboard/staff'
+      preLoaderRoute: typeof DashboardStaffRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/reports': {
+      id: '/dashboard/reports'
+      path: '/reports'
+      fullPath: '/dashboard/reports'
+      preLoaderRoute: typeof DashboardReportsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/inventory': {
+      id: '/dashboard/inventory'
+      path: '/inventory'
+      fullPath: '/dashboard/inventory'
+      preLoaderRoute: typeof DashboardInventoryRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/events': {
+      id: '/dashboard/events'
+      path: '/events'
+      fullPath: '/dashboard/events'
+      preLoaderRoute: typeof DashboardEventsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/donations': {
+      id: '/dashboard/donations'
+      path: '/donations'
+      fullPath: '/dashboard/donations'
+      preLoaderRoute: typeof DashboardDonationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/documents': {
+      id: '/dashboard/documents'
+      path: '/documents'
+      fullPath: '/dashboard/documents'
+      preLoaderRoute: typeof DashboardDocumentsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/compliance': {
+      id: '/dashboard/compliance'
+      path: '/compliance'
+      fullPath: '/dashboard/compliance'
+      preLoaderRoute: typeof DashboardComplianceRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/children': {
+      id: '/dashboard/children'
+      path: '/children'
+      fullPath: '/dashboard/children'
+      preLoaderRoute: typeof DashboardChildrenRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+  }
+}
+
+interface DashboardRouteChildren {
   DashboardChildrenRoute: typeof DashboardChildrenRoute
   DashboardComplianceRoute: typeof DashboardComplianceRoute
   DashboardDocumentsRoute: typeof DashboardDocumentsRoute
@@ -147,75 +236,7 @@ export interface RootRouteChildren {
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/dashboard'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/staff': {
-      id: '/dashboard/staff'
-      path: '/dashboard/staff'
-      fullPath: '/dashboard/staff'
-      preLoaderRoute: typeof DashboardStaffRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/reports': {
-      id: '/dashboard/reports'
-      path: '/dashboard/reports'
-      fullPath: '/dashboard/reports'
-      preLoaderRoute: typeof DashboardReportsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/inventory': {
-      id: '/dashboard/inventory'
-      path: '/dashboard/inventory'
-      fullPath: '/dashboard/inventory'
-      preLoaderRoute: typeof DashboardInventoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/events': {
-      id: '/dashboard/events'
-      path: '/dashboard/events'
-      fullPath: '/dashboard/events'
-      preLoaderRoute: typeof DashboardEventsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/donations': {
-      id: '/dashboard/donations'
-      path: '/dashboard/donations'
-      fullPath: '/dashboard/donations'
-      preLoaderRoute: typeof DashboardDonationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/documents': {
-      id: '/dashboard/documents'
-      path: '/dashboard/documents'
-      fullPath: '/dashboard/documents'
-      preLoaderRoute: typeof DashboardDocumentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/compliance': {
-      id: '/dashboard/compliance'
-      path: '/dashboard/compliance'
-      fullPath: '/dashboard/compliance'
-      preLoaderRoute: typeof DashboardComplianceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/children': {
-      id: '/dashboard/children'
-      path: '/dashboard/children'
-      fullPath: '/dashboard/children'
-      preLoaderRoute: typeof DashboardChildrenRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-  }
-}
-
-const rootRouteChildren: RootRouteChildren = {
+const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardChildrenRoute: DashboardChildrenRoute,
   DashboardComplianceRoute: DashboardComplianceRoute,
   DashboardDocumentsRoute: DashboardDocumentsRoute,
@@ -225,6 +246,14 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardReportsRoute: DashboardReportsRoute,
   DashboardStaffRoute: DashboardStaffRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
+const rootRouteChildren: RootRouteChildren = {
+  DashboardRoute: DashboardRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
