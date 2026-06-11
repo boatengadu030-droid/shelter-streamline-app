@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SponsorshipRouteImport } from './routes/sponsorship'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AboutRouteImport } from './routes/about'
@@ -23,6 +24,11 @@ import { Route as DashboardDocumentsRouteImport } from './routes/dashboard.docum
 import { Route as DashboardComplianceRouteImport } from './routes/dashboard.compliance'
 import { Route as DashboardChildrenRouteImport } from './routes/dashboard.children'
 
+const SponsorshipRoute = SponsorshipRouteImport.update({
+  id: '/sponsorship',
+  path: '/sponsorship',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/programs': typeof ProgramsRoute
+  '/sponsorship': typeof SponsorshipRoute
   '/dashboard/children': typeof DashboardChildrenRoute
   '/dashboard/compliance': typeof DashboardComplianceRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/programs': typeof ProgramsRoute
+  '/sponsorship': typeof SponsorshipRoute
   '/dashboard/children': typeof DashboardChildrenRoute
   '/dashboard/compliance': typeof DashboardComplianceRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/programs': typeof ProgramsRoute
+  '/sponsorship': typeof SponsorshipRoute
   '/dashboard/children': typeof DashboardChildrenRoute
   '/dashboard/compliance': typeof DashboardComplianceRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/dashboard'
     | '/programs'
+    | '/sponsorship'
     | '/dashboard/children'
     | '/dashboard/compliance'
     | '/dashboard/documents'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/programs'
+    | '/sponsorship'
     | '/dashboard/children'
     | '/dashboard/compliance'
     | '/dashboard/documents'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/dashboard'
     | '/programs'
+    | '/sponsorship'
     | '/dashboard/children'
     | '/dashboard/compliance'
     | '/dashboard/documents'
@@ -186,10 +198,18 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   ProgramsRoute: typeof ProgramsRoute
+  SponsorshipRoute: typeof SponsorshipRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sponsorship': {
+      id: '/sponsorship'
+      path: '/sponsorship'
+      fullPath: '/sponsorship'
+      preLoaderRoute: typeof SponsorshipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programs': {
       id: '/programs'
       path: '/programs'
@@ -317,6 +337,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   DashboardRoute: DashboardRouteWithChildren,
   ProgramsRoute: ProgramsRoute,
+  SponsorshipRoute: SponsorshipRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
