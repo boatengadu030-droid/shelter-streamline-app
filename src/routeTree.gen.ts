@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as SponsorshipRouteImport } from './routes/sponsorship'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as EventsRouteImport } from './routes/events'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AboutRouteImport } from './routes/about'
@@ -39,6 +40,11 @@ const SponsorshipRoute = SponsorshipRouteImport.update({
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DonateRoute = DonateRouteImport.update({
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/donate': typeof DonateRoute
+  '/events': typeof EventsRoute
   '/programs': typeof ProgramsRoute
   '/sponsorship': typeof SponsorshipRoute
   '/stories': typeof StoriesRoute
@@ -129,6 +136,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/donate': typeof DonateRoute
+  '/events': typeof EventsRoute
   '/programs': typeof ProgramsRoute
   '/sponsorship': typeof SponsorshipRoute
   '/stories': typeof StoriesRoute
@@ -148,6 +156,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/donate': typeof DonateRoute
+  '/events': typeof EventsRoute
   '/programs': typeof ProgramsRoute
   '/sponsorship': typeof SponsorshipRoute
   '/stories': typeof StoriesRoute
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/dashboard'
     | '/donate'
+    | '/events'
     | '/programs'
     | '/sponsorship'
     | '/stories'
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/donate'
+    | '/events'
     | '/programs'
     | '/sponsorship'
     | '/stories'
@@ -203,6 +214,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/dashboard'
     | '/donate'
+    | '/events'
     | '/programs'
     | '/sponsorship'
     | '/stories'
@@ -222,6 +234,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   DonateRoute: typeof DonateRoute
+  EventsRoute: typeof EventsRoute
   ProgramsRoute: typeof ProgramsRoute
   SponsorshipRoute: typeof SponsorshipRoute
   StoriesRoute: typeof StoriesRoute
@@ -248,6 +261,13 @@ declare module '@tanstack/react-router' {
       path: '/programs'
       fullPath: '/programs'
       preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/donate': {
@@ -377,6 +397,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   DashboardRoute: DashboardRouteWithChildren,
   DonateRoute: DonateRoute,
+  EventsRoute: EventsRoute,
   ProgramsRoute: ProgramsRoute,
   SponsorshipRoute: SponsorshipRoute,
   StoriesRoute: StoriesRoute,
