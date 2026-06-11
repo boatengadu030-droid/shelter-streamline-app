@@ -98,7 +98,7 @@ function Dashboard() {
         actions={
           <>
             <Button variant="outline" className="gap-2"><Calendar className="h-4 w-4" />{monthLabel}</Button>
-            <Button asChild className="gap-2"><Link to="/donations"><Plus className="h-4 w-4" />New donation</Link></Button>
+            <Button asChild className="gap-2"><Link to="/dashboard/donations"><Plus className="h-4 w-4" />New donation</Link></Button>
           </>
         }
       />
@@ -230,7 +230,7 @@ function Dashboard() {
           <Card className="p-6">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-lg font-semibold">Recent donations</h3>
-              <Link to="/donations" className="text-xs text-primary underline">View all</Link>
+              <Link to="/dashboard/donations" className="text-xs text-primary underline">View all</Link>
             </div>
             <div className="mt-4 divide-y divide-border/60">
               {recentDonations.length === 0 && <p className="py-6 text-sm text-muted-foreground">No donations yet — record your first one.</p>}
@@ -249,7 +249,7 @@ function Dashboard() {
           <Card className="p-6">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-lg font-semibold">Upcoming events</h3>
-              <Link to="/events" className="text-xs text-primary underline">View all</Link>
+              <Link to="/dashboard/events" className="text-xs text-primary underline">View all</Link>
             </div>
             <div className="mt-4 divide-y divide-border/60">
               {upcoming.length === 0 && <p className="py-6 text-sm text-muted-foreground">No events scheduled.</p>}
