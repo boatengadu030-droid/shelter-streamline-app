@@ -9,54 +9,54 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StaffRouteImport } from './routes/staff'
-import { Route as ReportsRouteImport } from './routes/reports'
-import { Route as InventoryRouteImport } from './routes/inventory'
-import { Route as EventsRouteImport } from './routes/events'
-import { Route as DonationsRouteImport } from './routes/donations'
-import { Route as DocumentsRouteImport } from './routes/documents'
-import { Route as ComplianceRouteImport } from './routes/compliance'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardStaffRouteImport } from './routes/dashboard.staff'
+import { Route as DashboardReportsRouteImport } from './routes/dashboard.reports'
+import { Route as DashboardInventoryRouteImport } from './routes/dashboard.inventory'
+import { Route as DashboardEventsRouteImport } from './routes/dashboard.events'
+import { Route as DashboardDonationsRouteImport } from './routes/dashboard.donations'
+import { Route as DashboardDocumentsRouteImport } from './routes/dashboard.documents'
+import { Route as DashboardComplianceRouteImport } from './routes/dashboard.compliance'
 import { Route as DashboardChildrenRouteImport } from './routes/dashboard.children'
 
-const StaffRoute = StaffRouteImport.update({
-  id: '/staff',
-  path: '/staff',
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReportsRoute = ReportsRouteImport.update({
-  id: '/reports',
-  path: '/reports',
+const DashboardStaffRoute = DashboardStaffRouteImport.update({
+  id: '/dashboard/staff',
+  path: '/dashboard/staff',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InventoryRoute = InventoryRouteImport.update({
-  id: '/inventory',
-  path: '/inventory',
+const DashboardReportsRoute = DashboardReportsRouteImport.update({
+  id: '/dashboard/reports',
+  path: '/dashboard/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EventsRoute = EventsRouteImport.update({
-  id: '/events',
-  path: '/events',
+const DashboardInventoryRoute = DashboardInventoryRouteImport.update({
+  id: '/dashboard/inventory',
+  path: '/dashboard/inventory',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DonationsRoute = DonationsRouteImport.update({
-  id: '/donations',
-  path: '/donations',
+const DashboardEventsRoute = DashboardEventsRouteImport.update({
+  id: '/dashboard/events',
+  path: '/dashboard/events',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DocumentsRoute = DocumentsRouteImport.update({
-  id: '/documents',
-  path: '/documents',
+const DashboardDonationsRoute = DashboardDonationsRouteImport.update({
+  id: '/dashboard/donations',
+  path: '/dashboard/donations',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ComplianceRoute = ComplianceRouteImport.update({
-  id: '/compliance',
-  path: '/compliance',
+const DashboardDocumentsRoute = DashboardDocumentsRouteImport.update({
+  id: '/dashboard/documents',
+  path: '/dashboard/documents',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const DashboardComplianceRoute = DashboardComplianceRouteImport.update({
+  id: '/dashboard/compliance',
+  path: '/dashboard/compliance',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardChildrenRoute = DashboardChildrenRouteImport.update({
@@ -66,143 +66,143 @@ const DashboardChildrenRoute = DashboardChildrenRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/compliance': typeof ComplianceRoute
-  '/documents': typeof DocumentsRoute
-  '/donations': typeof DonationsRoute
-  '/events': typeof EventsRoute
-  '/inventory': typeof InventoryRoute
-  '/reports': typeof ReportsRoute
-  '/staff': typeof StaffRoute
   '/dashboard/children': typeof DashboardChildrenRoute
+  '/dashboard/compliance': typeof DashboardComplianceRoute
+  '/dashboard/documents': typeof DashboardDocumentsRoute
+  '/dashboard/donations': typeof DashboardDonationsRoute
+  '/dashboard/events': typeof DashboardEventsRoute
+  '/dashboard/inventory': typeof DashboardInventoryRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/staff': typeof DashboardStaffRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/compliance': typeof ComplianceRoute
-  '/documents': typeof DocumentsRoute
-  '/donations': typeof DonationsRoute
-  '/events': typeof EventsRoute
-  '/inventory': typeof InventoryRoute
-  '/reports': typeof ReportsRoute
-  '/staff': typeof StaffRoute
   '/dashboard/children': typeof DashboardChildrenRoute
+  '/dashboard/compliance': typeof DashboardComplianceRoute
+  '/dashboard/documents': typeof DashboardDocumentsRoute
+  '/dashboard/donations': typeof DashboardDonationsRoute
+  '/dashboard/events': typeof DashboardEventsRoute
+  '/dashboard/inventory': typeof DashboardInventoryRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/staff': typeof DashboardStaffRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/compliance': typeof ComplianceRoute
-  '/documents': typeof DocumentsRoute
-  '/donations': typeof DonationsRoute
-  '/events': typeof EventsRoute
-  '/inventory': typeof InventoryRoute
-  '/reports': typeof ReportsRoute
-  '/staff': typeof StaffRoute
   '/dashboard/children': typeof DashboardChildrenRoute
+  '/dashboard/compliance': typeof DashboardComplianceRoute
+  '/dashboard/documents': typeof DashboardDocumentsRoute
+  '/dashboard/donations': typeof DashboardDonationsRoute
+  '/dashboard/events': typeof DashboardEventsRoute
+  '/dashboard/inventory': typeof DashboardInventoryRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/staff': typeof DashboardStaffRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/compliance'
-    | '/documents'
-    | '/donations'
-    | '/events'
-    | '/inventory'
-    | '/reports'
-    | '/staff'
     | '/dashboard/children'
+    | '/dashboard/compliance'
+    | '/dashboard/documents'
+    | '/dashboard/donations'
+    | '/dashboard/events'
+    | '/dashboard/inventory'
+    | '/dashboard/reports'
+    | '/dashboard/staff'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/compliance'
-    | '/documents'
-    | '/donations'
-    | '/events'
-    | '/inventory'
-    | '/reports'
-    | '/staff'
     | '/dashboard/children'
+    | '/dashboard/compliance'
+    | '/dashboard/documents'
+    | '/dashboard/donations'
+    | '/dashboard/events'
+    | '/dashboard/inventory'
+    | '/dashboard/reports'
+    | '/dashboard/staff'
+    | '/dashboard'
   id:
     | '__root__'
-    | '/'
-    | '/compliance'
-    | '/documents'
-    | '/donations'
-    | '/events'
-    | '/inventory'
-    | '/reports'
-    | '/staff'
     | '/dashboard/children'
+    | '/dashboard/compliance'
+    | '/dashboard/documents'
+    | '/dashboard/donations'
+    | '/dashboard/events'
+    | '/dashboard/inventory'
+    | '/dashboard/reports'
+    | '/dashboard/staff'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ComplianceRoute: typeof ComplianceRoute
-  DocumentsRoute: typeof DocumentsRoute
-  DonationsRoute: typeof DonationsRoute
-  EventsRoute: typeof EventsRoute
-  InventoryRoute: typeof InventoryRoute
-  ReportsRoute: typeof ReportsRoute
-  StaffRoute: typeof StaffRoute
   DashboardChildrenRoute: typeof DashboardChildrenRoute
+  DashboardComplianceRoute: typeof DashboardComplianceRoute
+  DashboardDocumentsRoute: typeof DashboardDocumentsRoute
+  DashboardDonationsRoute: typeof DashboardDonationsRoute
+  DashboardEventsRoute: typeof DashboardEventsRoute
+  DashboardInventoryRoute: typeof DashboardInventoryRoute
+  DashboardReportsRoute: typeof DashboardReportsRoute
+  DashboardStaffRoute: typeof DashboardStaffRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/staff': {
-      id: '/staff'
-      path: '/staff'
-      fullPath: '/staff'
-      preLoaderRoute: typeof StaffRouteImport
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reports': {
-      id: '/reports'
-      path: '/reports'
-      fullPath: '/reports'
-      preLoaderRoute: typeof ReportsRouteImport
+    '/dashboard/staff': {
+      id: '/dashboard/staff'
+      path: '/dashboard/staff'
+      fullPath: '/dashboard/staff'
+      preLoaderRoute: typeof DashboardStaffRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/inventory': {
-      id: '/inventory'
-      path: '/inventory'
-      fullPath: '/inventory'
-      preLoaderRoute: typeof InventoryRouteImport
+    '/dashboard/reports': {
+      id: '/dashboard/reports'
+      path: '/dashboard/reports'
+      fullPath: '/dashboard/reports'
+      preLoaderRoute: typeof DashboardReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/events': {
-      id: '/events'
-      path: '/events'
-      fullPath: '/events'
-      preLoaderRoute: typeof EventsRouteImport
+    '/dashboard/inventory': {
+      id: '/dashboard/inventory'
+      path: '/dashboard/inventory'
+      fullPath: '/dashboard/inventory'
+      preLoaderRoute: typeof DashboardInventoryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/donations': {
-      id: '/donations'
-      path: '/donations'
-      fullPath: '/donations'
-      preLoaderRoute: typeof DonationsRouteImport
+    '/dashboard/events': {
+      id: '/dashboard/events'
+      path: '/dashboard/events'
+      fullPath: '/dashboard/events'
+      preLoaderRoute: typeof DashboardEventsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/documents': {
-      id: '/documents'
-      path: '/documents'
-      fullPath: '/documents'
-      preLoaderRoute: typeof DocumentsRouteImport
+    '/dashboard/donations': {
+      id: '/dashboard/donations'
+      path: '/dashboard/donations'
+      fullPath: '/dashboard/donations'
+      preLoaderRoute: typeof DashboardDonationsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/compliance': {
-      id: '/compliance'
-      path: '/compliance'
-      fullPath: '/compliance'
-      preLoaderRoute: typeof ComplianceRouteImport
+    '/dashboard/documents': {
+      id: '/dashboard/documents'
+      path: '/dashboard/documents'
+      fullPath: '/dashboard/documents'
+      preLoaderRoute: typeof DashboardDocumentsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/dashboard/compliance': {
+      id: '/dashboard/compliance'
+      path: '/dashboard/compliance'
+      fullPath: '/dashboard/compliance'
+      preLoaderRoute: typeof DashboardComplianceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/children': {
@@ -216,15 +216,15 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  ComplianceRoute: ComplianceRoute,
-  DocumentsRoute: DocumentsRoute,
-  DonationsRoute: DonationsRoute,
-  EventsRoute: EventsRoute,
-  InventoryRoute: InventoryRoute,
-  ReportsRoute: ReportsRoute,
-  StaffRoute: StaffRoute,
   DashboardChildrenRoute: DashboardChildrenRoute,
+  DashboardComplianceRoute: DashboardComplianceRoute,
+  DashboardDocumentsRoute: DashboardDocumentsRoute,
+  DashboardDonationsRoute: DashboardDonationsRoute,
+  DashboardEventsRoute: DashboardEventsRoute,
+  DashboardInventoryRoute: DashboardInventoryRoute,
+  DashboardReportsRoute: DashboardReportsRoute,
+  DashboardStaffRoute: DashboardStaffRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
