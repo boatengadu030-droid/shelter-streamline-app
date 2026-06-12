@@ -7,7 +7,7 @@ import logo from "@/assets/logo.png";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/60 bg-gradient-to-b from-background to-primary-soft/30">
+    <footer className="border-t border-border/60 bg-linear-to-b from-background to-primary-soft/30">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">

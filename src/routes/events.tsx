@@ -75,7 +75,7 @@ function PublicEventsPage() {
 function EventCard({ e, muted }: { e: EventRow; muted?: boolean }) {
   return (
     <Card className={`overflow-hidden rounded-3xl border-border/60 p-0 shadow-soft ${muted ? "opacity-80" : ""}`}>
-      <div className="flex items-center gap-4 bg-gradient-to-br from-primary-soft to-primary/15 p-6">
+      <div className="flex items-center gap-4 bg-linear-to-br from-primary-soft to-primary/15 p-6">
         <div className="flex h-16 w-16 flex-col items-center justify-center rounded-2xl bg-white text-primary shadow-soft">
           <span className="text-[10px] uppercase">{format(new Date(e.start_at), "MMM")}</span>
           <span className="font-display text-2xl font-bold leading-none">{format(new Date(e.start_at), "d")}</span>

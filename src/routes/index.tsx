@@ -33,7 +33,7 @@ function HomePage() {
   return (
     <SiteLayout>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary-soft/50 via-background to-background">
+      <section className="relative overflow-hidden bg-linear-to-b from-primary-soft/50 via-background to-background">
         <div aria-hidden className="pointer-events-none absolute -top-32 -left-32 h-[460px] w-[460px] rounded-full bg-primary/20 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute top-40 -right-40 h-[460px] w-[460px] rounded-full bg-warning/25 blur-3xl" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8 lg:py-24">
@@ -181,7 +181,7 @@ function HomePage() {
       </section>
 
       {/* STORIES */}
-      <section className="bg-gradient-to-b from-background to-primary-soft/30 py-20">
+      <section className="bg-linear-to-b from-background to-primary-soft/30 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="relative">
@@ -212,7 +212,7 @@ function HomePage() {
 
       {/* SPONSORSHIP CTA */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-primary via-primary to-primary/80 px-8 py-16 text-primary-foreground shadow-glow sm:px-14 lg:px-20">
+        <div className="overflow-hidden rounded-[2.5rem] bg-linear-to-br from-primary via-primary to-primary/80 px-8 py-16 text-primary-foreground shadow-glow sm:px-14 lg:px-20">
           <div className="grid items-center gap-8 lg:grid-cols-2">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em] opacity-80">Sponsorship</p>
