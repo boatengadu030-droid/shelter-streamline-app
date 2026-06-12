@@ -40,7 +40,7 @@ function AboutPage() {
       </section>
 
       {/* STORY / TIMELINE */}
-      <section className="bg-gradient-to-b from-background to-primary-soft/30 py-20">
+      <section className="bg-linear-to-b from-background to-primary-soft/30 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
@@ -100,7 +100,7 @@ function AboutPage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((t) => (
               <Card key={t.name} className="rounded-3xl border-border/60 bg-white p-5 shadow-soft">
-                <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-primary-soft to-primary/30">
+                <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-linear-to-br from-primary-soft to-primary/30">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="font-display text-4xl font-bold text-primary/70">{t.name.split(" ").map(n => n[0]).slice(0,2).join("")}</span>
                   </div>
@@ -157,7 +157,7 @@ function AboutPage() {
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-primary via-primary to-primary/80 p-10 text-primary-foreground shadow-glow sm:p-14 lg:grid-cols-2">
+        <div className="grid items-center gap-10 overflow-hidden rounded-[2.5rem] bg-linear-to-br from-primary via-primary to-primary/80 p-10 text-primary-foreground shadow-glow sm:p-14 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-3xl font-bold sm:text-4xl">Walk with us.</h2>
             <p className="mt-3 max-w-md opacity-90">Sponsor a child, fund a program, or join as a volunteer — every chapter matters.</p>

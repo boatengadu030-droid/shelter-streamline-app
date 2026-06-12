@@ -30,7 +30,7 @@ function ProgramsPage() {
           {programs.map((p, i) => (
             <Card key={p.title} className="overflow-hidden rounded-[2rem] border-border/60 p-0 shadow-soft">
               <div className={`grid items-stretch gap-0 md:grid-cols-2 ${i % 2 === 1 ? "md:[&>:first-child]:order-2" : ""}`}>
-                <div className="flex items-center justify-center bg-gradient-to-br from-primary-soft to-primary/15 p-12">
+                <div className="flex items-center justify-center bg-linear-to-br from-primary-soft to-primary/15 p-12">
                   <p.icon className="h-24 w-24 text-primary/60" />
                 </div>
                 <div className="p-8 sm:p-10">

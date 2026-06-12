@@ -22,7 +22,7 @@ export function PageHero({
   subtitle?: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-primary-soft/60 via-primary-soft/20 to-background">
+    <section className="relative overflow-hidden border-b border-border/40 bg-linear-to-b from-primary-soft/60 via-primary-soft/20 to-background">
       <div aria-hidden className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-primary/20 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-24 -right-32 h-[420px] w-[420px] rounded-full bg-warning/20 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">

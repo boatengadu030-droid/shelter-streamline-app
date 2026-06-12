@@ -55,7 +55,7 @@ export function AuthPage({ onBack }: { onBack?: () => void }) {
           className="absolute inset-0 h-full w-full object-cover animate-[kenburns_24s_ease-in-out_infinite_alternate]"
         />
         {/* Green brand overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary/75 to-primary/95" />
+        <div className="absolute inset-0 bg-linear-to-br from-primary/85 via-primary/75 to-primary/95" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary-foreground)/0.18),transparent_60%)]" />
         <div className="absolute inset-0 opacity-20 mix-blend-soft-light shimmer" />
 

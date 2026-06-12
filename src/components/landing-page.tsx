@@ -112,7 +112,7 @@ but by an intentional commitment towards emotional healing and mindset transform
               <div className="absolute inset-0 -rotate-2 rounded-[2rem] border border-border/60 bg-card shadow-soft drift" />
               <div className="reveal reveal-d2 absolute inset-0 overflow-hidden rounded-[2rem] border border-border/60 shadow-soft">
                 <img src={photo1} alt="Children laughing together at a community home" className="h-full w-full object-cover" width={1080} height={1350} />
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/55 via-black/10 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 text-primary-foreground">
                   <p className="text-[10px] uppercase tracking-[0.22em] opacity-90">Child of Grace Home · Accra</p>
                   <p className="font-display text-2xl font-semibold">{stats.children_count} children. One care team.</p>
