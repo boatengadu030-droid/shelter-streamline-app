@@ -71,7 +71,6 @@ export function SiteFooter() {
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-foreground">Privacy</a>
             <a href="#" className="hover:text-foreground">Terms</a>
-            <Link to="/dashboard" className="hover:text-foreground">Staff Login</Link>
           </div>
         </div>
       </div>
